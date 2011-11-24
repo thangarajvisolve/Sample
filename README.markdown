@@ -25,7 +25,7 @@ The requirements for compiling and running :
 INSTALLATION STEPS
 ------------------
 
-OpenSpliceDDS
+OPENSPLICEDDS
 -------------
   OpenSplice DDS is one of several open source implementation of the OMG Data Distribution Service for Real-Time Systems (DDS) standard.
   
@@ -98,7 +98,7 @@ This package contains the following file: ../support/build/Makefile
 
 
 STEPS TO RUN THE APPLICATIONS 
------------------------------
+=============================
 
 1. Set OpenSpliceDDS environment using the following command
 
