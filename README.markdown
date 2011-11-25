@@ -100,15 +100,15 @@ This package contains the following file: ../support/build/Makefile
 STEPS TO RUN THE APPLICATIONS 
 =============================
 
-1. Set OpenSpliceDDS environment using the following command
+**1**. Set OpenSpliceDDS environment using the following command
 
         $ source /usr/local/HDE/x86.linux2.6/release.com
 
-2. Start OpenSpliceDDS
+**2**. Start OpenSpliceDDS
 
         $ ospl start
 
-3. Start the data generator at the terminal using the following command
+**3**. Start the data generator at the terminal using the following command
 
         $ ./data-generator 
      
@@ -118,7 +118,7 @@ randomly corresponding to the publisher and send it to the publisher. The reques
      
 * **BLOOD PRESSURE:**
 
-3.1. Start the `blood pressure publisher` shall be started by passing the various options suffix to the command .
+**3.1.** Start the `blood pressure publisher` shall be started by passing the various options suffix to the command .
 
       $. /bp-pub --
 
@@ -151,7 +151,26 @@ Example:
 NOTE : `The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format`
 
 
-3.2. Start the `blood pressure subscribers` on the other terminal by passing the various options suffix to the command .
+**3.1.1** Start the` blood pressure publisher shell script` on the other terminal , once multiple publishers need to publish the topic using the following command
+
+        $./bp-pub.sh --
+
+Available Options are:
+
+        --domain        Device Domain
+        
+        --device-id     Device ID to identify the particular device
+        
+        --spawn         Number of publishers to run
+        
+        --log4cpp-conf  Configration file path
+
+EXAMPLE:
+        $./bp-pub.sh --domain=blood --device-id=BP --spawn=5 --log4cpp-conf ../src/c++/production/conf/simulation_log_bp.conf
+
+NOTE : `The  arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format`.
+
+**3.2**. Start the `blood pressure subscribers` on the other terminal by passing the various options suffix to the command .
 
     $ ./bp-sub-echo --
 
@@ -171,18 +190,18 @@ Available options are:
 
 Example:
 
-    $ /bp-sub-echo --domain blood --device-id BP_LAB3 --log-info blood.info --log-data blood.echo --log4cpp-conf ../src/c++/production/conf/
+         $ /bp-sub-echo --domain blood --device-id BP_LAB3 --log-info blood.info --log-data blood.echo --log4cpp-conf ../src/c++/production/conf/
 
-      simulation_log_bp_sub.conf         
+            simulation_log_bp_sub.conf         
 
       
-  * Once the blood pressure subscriber is started it will retrieve data from the Topic. Subscriber uses ContentFilterTopic to retrieve messages based on the device ID from a single topic.
+  * Once the blood pressure subscriber is started it will retrieve data from the Topic. Subscriber uses ContentFilterTopic to retrieve messages based on the Device ID from a single topic.
   
   NOTE : `The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.`
 
-3.3. Start the `blood pressure alarm` on the other terminal by passing the various options suffix to the command. 
+**3.3**. Start the `blood pressure alarm` on the other terminal by passing the various options suffix to the command. 
 
-$ ./bp-sub-alarm 
+        $ ./bp-sub-alarm 
 
 Available options are:
   
@@ -223,7 +242,7 @@ arguments.
 
 NOTE : `The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.`
 
-3.4. Start the `blood pressure persists` in the other terminal by passing the various options suffix to the command. 
+**3.4**. Start the `blood pressure persists` in the other terminal by passing the various options suffix to the command. 
 
       $./bp-sub-persist 
 
@@ -256,9 +275,9 @@ Example
 NOTE :` The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.`
 
 
-* ** PULSE OXIMETER:**
+* **PULSE OXIMETER:**
 
-4.1. `Pulse oximeter publisher` shall be started by passing the various options suffix to the command .
+**4.1.** `Pulse oximeter publisher` shall be started by passing the various options suffix to the command .
 
         $./pulseox-pub 
 
@@ -284,11 +303,30 @@ Example :
 
        ./pulseox-pub --data-gen-ip 127.0.0.1 --data-gen-port 5000 --domain pulse --device-id PULSE_LAB3 --log-info pulse.info --log-data pulse.data --log4cpp-conf ../src/c++/production/conf/simulation_log_pulse.conf
 
-* Once the publisher binds with the data generator and send a command, it receives data from data-generator and displays the data in the log files.
+  * Once the publisher binds with the data generator and send a command, it receives data from data-generator and displays the data in the log files.
 
 NOTE :` The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.`
 
-4.2. Start the `pulse oximeter subscribers` on the other terminal using by passing various options suffix to the command,
+**4.1.1.** Start the` pulse-oximeter  publisher shell script` on the other terminal , once multiple publishers need to publish the topic using the following command
+
+      ./pulseox-pub.sh --
+
+Available Options are:
+
+        --domain        Device Domain
+        
+        --device-id     Device ID to identify the particular device
+        
+        --spawn         Number of publishers to run
+        
+        --log4cpp-conf  Configration file path
+
+EXAMPLE:
+        $./pulse-oximeter-pub.sh --domain=pulse --device-id=Pulse --spawn=5 --log4cpp-conf ../src/c++/production/conf/simulation_log_bp.conf
+
+NOTE : `The arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format`
+
+**4.2.** Start the `pulse oximeter subscribers` on the other terminal using by passing various options suffix to the command,
 
       $./pulseox-sub-echo -
 
@@ -312,11 +350,11 @@ Example:
 
         simulation_log_pulse_sub.conf     
 
-* Once the pulse oximeter subscriber is started it will retrieve data from the Topic. Subscriber uses ContentFilterTopic to retrieve messages based on the Device ID from a single topic.
+  * Once the pulse oximeter subscriber is started it will retrieve data from the Topic. Subscriber uses ContentFilterTopic to retrieve messages based on the Device ID from a single topic.
 
 NOTE : `The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.`
  
-4.3. Start the pulseox oximeter alarm on the other terminal using by passing various options suffix to the command
+**4.3.** Start the pulseox oximeter alarm on the other terminal using by passing various options suffix to the command
 
         $./pulseox-sub-alarm -
 
@@ -350,9 +388,9 @@ Example:
 
 NOTE : `The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.`
 
-4.4. Start the pulse oximeter persist on the other terminal using by passing various options suffix to the command 
+**4.4.** Start the pulse oximeter persist on the other terminal using by passing various options suffix to the command 
 
-$./pulseox-sub-persist -- 
+        $./pulseox-sub-persist -- 
 
 Available options are:
   
@@ -383,9 +421,9 @@ Example:
 NOTE : `The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.`
 
 
-* **5.TEMPERATURE MONITOR:**
+* **TEMPERATURE MONITOR:**
 
-5.1. Temperature monitor publisher shall be started by passing the various options suffix to the command.
+**5.1.** Temperature monitor publisher shall be started by passing the various options suffix to the command.
 
     $./tempmonitor-pub --
 
@@ -416,7 +454,30 @@ Example :
 
 NOTE : `The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.`
 
-5.2. Start the `temperature monitor subscribers` on the other terminal by passing the various options suffix to the command ,
+
+**5.1.1** Start the` temperature monitor publisher shell script` on the other terminal , once multiple publishers need to publish the topic using the following command
+
+      ./tempmonitor-pub.sh --
+
+Available Options are:
+
+        --domain        Device Domain
+        
+        --device-id     Device ID to identify the particular device
+        
+        --spawn         Number of publishers to run
+        
+        --log4cpp-conf  Configration file path
+
+EXAMPLE:
+        $./tempmonitor-pub.sh --domain=blood --device-id=BP --spawn=5 --log4cpp-conf ../src/c++/production/conf/simulation_log_bp.conf
+  
+  * Once the publisher shell script is started it will 
+  
+    NOTE : `The arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format`
+
+ 
+**5.2.** Start the `temperature monitor subscribers` on the other terminal by passing the various options suffix to the command ,
 
           $./tempmonitor-sub-echo
 
@@ -438,16 +499,13 @@ Example:
 
         $ ./temp-sub-echo --domain temp --device-id Temp_LAB123 --log-info temp.info --log-data temp.echo --log4cpp-conf ../src/c++/production/conf/
 
-          simulation_log_temp_sub.conf  
+            simulation_log_temp_sub.conf  
 
-
-  * Once the temp subscriber is started it will retrieve data from the Topic. Subscriber uses ContentFilterTopic to retrieve messages based on the Device ID 
-
-from a single topic.
+  * Once the temp subscriber is started it will retrieve data from the Topic. Subscriber uses ContentFilterTopic to retrieve messages based on the Device ID from a single topic.
 
 NOTE :  `The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.`
 
-5.3.  Start the `temperature-monitor alarm` by passing the various options suffix to the command ,
+**5.3.**  Start the `temperature-monitor alarm` by passing the various options suffix to the command ,
 
         $./tempmonitor-sub-alarm
 
@@ -483,7 +541,7 @@ arguments.
 
 NOTE : `The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.`
 
-5.4. Start the `temperature-monitor persistence` by passing the various options suffix to the command,
+**5.4.** Start the `temperature-monitor persistence` by passing the various options suffix to the command,
 
          $./tempmonitor-sub-persist 
 
@@ -519,11 +577,11 @@ NOTE : `The category name arguments passed to the application needs to be config
 STEPS TO RUN ON DISTRIBUTED APPLICATION:
 ========================================
 
-1. From the installation location of OpenspliceDDS, we need to change the few confiuration in the ospl config file located in,
+**1.** From the installation location of OpenspliceDDS, we need to change the few confiuration in the ospl config file located in,
 
           ${OSPL_INSTALLTION_DIR}/HDE/x86_64.linux2.6/etc/config/ospl.xml
  
-2. Following statements should be modified in the config file,
+**2.** Following statements should be modified in the config file,
     
         <General>
 
@@ -539,7 +597,7 @@ STEPS TO RUN ON DISTRIBUTED APPLICATION:
 NOTE : The same configuration changes needs to reflected in all the machines running in the same domain.
 
 
-3. Architecture of Distributed Application will be  as following structure:
+**3.** Architecture of Distributed Application will be  as following structure:
 
 
             
@@ -549,15 +607,15 @@ NOTE : The same configuration changes needs to reflected in all the machines run
     
     
 
-4. In the given architecture each entities can reside in different machines or publishers and data generator can be reside in same machine.
+**4.** In the given architecture each entities can reside in different machines or publishers and data generator can be reside in same machine.
 
-5. Central OsplDDS acts as an gateway between the publishers and the subscribers.
+**5.** Central OsplDDS acts as an gateway between the publishers and the subscribers.
 
-6. Publisher can reside in different machine and makes the request to the data generator to generate the data randomly and receives the data .
+**6.** Publisher can reside in different machine and makes the request to the data generator to generate the data randomly and receives the data .
 
-7. Publishers & Subscribers Ospl should contain the IP_Address of central ospl IA_Address in its config file.
+**7.** Publishers & Subscribers Ospl should contain the IP_Address of central ospl IA_Address in its config file.
 
-8. The process of all the entities will remain the same as single machine implementation and the extension is it has been distributed with few 
+**8.** The process of all the entities will remain the same as single machine implementation and the extension is it has been distributed with few 
 
 configurations.
      
