@@ -112,7 +112,7 @@ STEPS TO RUN THE APPLICATIONS
 
         $ ./data-generator 
      
-* Data Generator will wait until it receives a request from publisher and once the request is received then it generates the data 
+  * Data Generator will wait until it receives a request from publisher and once the request is received then it generates the data 
 
 randomly corresponding to the publisher and send it to the publisher. The request can be from any of the three publishers listed below,
      
@@ -255,11 +255,11 @@ Example
 NOTE :` The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.`
 
 
-* **4.  PULSE OXIMETER :**
+* **4. PULSE OXIMETER:**
 
 4.1. `Pulse oximeter publisher` shall be started by passing the various options suffix to the command .
 
-$./pulseox-pub 
+        $./pulseox-pub 
 
 Available options are:
 
@@ -289,6 +289,8 @@ NOTE :` The category name arguments passed to the application needs to be config
 
 4.2. Start the `pulse oximeter subscribers` on the other terminal using by passing various options suffix to the command,
 
+      $./pulseox-sub-echo -
+
 Available options are:
 
       --help                Produce help message
@@ -315,7 +317,9 @@ Example:
 
 NOTE : `The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.`
  
-4.3. Start the `pulseox oximeter alarm` on the other terminal using by passing various options suffix to the command
+4.3. Start the pulseox oximeter alarm on the other terminal using by passing various options suffix to the command
+
+        $./pulseox-sub-alarm -
 
 Available options are:
 
@@ -347,7 +351,9 @@ Example:
 
 NOTE : `The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.`
 
-4.4. Start the `pulse oximeter persist` on the other terminal using by passing various options suffix to the command 
+4.4. Start the pulse oximeter persist on the other terminal using by passing various options suffix to the command 
+
+$./pulseox-sub-persist -- 
 
 Available options are:
   
@@ -378,7 +384,7 @@ Example:
 NOTE : `The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.`
 
 
-*  **5. TEMPERATURE MONITOR:**
+* **5.TEMPERATURE MONITOR:**
 
 5.1. Temperature monitor publisher shall be started by passing the various options suffix to the command.
 
@@ -413,6 +419,8 @@ NOTE : `The category name arguments passed to the application needs to be config
 
 5.2. Start the `temperature monitor subscribers` on the other terminal by passing the various options suffix to the command ,
 
+          $./tempmonitor-sub-echo
+
 Available options are:
 
         --help                  Produce help message
@@ -441,6 +449,10 @@ from a single topic.
 NOTE :  `The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.`
 
 5.3.  Start the `temperature-monitor alarm` by passing the various options suffix to the command ,
+
+        $./tempmonitor-sub-alarm
+
+Available options are:
 
         --help		              Produce help message
 
@@ -473,6 +485,8 @@ arguments.
 NOTE : `The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.`
 
 5.4. Start the `temperature-monitor persistence` by passing the various options suffix to the command,
+
+         $./tempmonitor-sub-persist 
 
 Available options are:
 
