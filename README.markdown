@@ -143,7 +143,7 @@ Example:
       $./bp-pub --data-gen-ip 127.0.0.1 --domain blood --device-id BP_LAB3 --log-info blood.info --log-data blood.data --log4cpp-conf ../src/c++/production/conf/simulation_log_bp.conf
     
 
-* Once the publisher binds with the data generator and send a command, it receives data from data-generator and displays the data in the log files.
+  * Once the publisher binds with the data generator and send a command, it receives data from data-generator and displays the data in the log files.
 
 NOTE : `The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format`
 
@@ -173,10 +173,8 @@ Example:
       simulation_log_bp_sub.conf         
 
       
-* Once the blood pressure subscriber is started it will retrieve data from the Topic. Subscriber uses ContentFilterTopic to retrieve messages based on the 
+  * Once the blood pressure subscriber is started it will retrieve data from the Topic. Subscriber uses ContentFilterTopic to retrieve messages based on the device ID from a single topic.
   
-  Device ID from a single topic.
-
   NOTE : `The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.`
 
 3.3. Start the `blood pressure alarm` on the other terminal by passing the various options suffix to the command. 
@@ -216,7 +214,7 @@ Example :
       simulation_log_bp_sub.conf
 
 
-* Once the blood pressure alarm is started it will retrieve the data and the displays in log file based on the default assessment or from the specified 
+  * Once the blood pressure alarm is started it will retrieve the data and the displays in log file based on the default assessment or from the specified 
 
 arguments.
 
@@ -250,7 +248,7 @@ Example
 
       simulation_log_bp_sub.conf
 
-* Once the blood pressure persistence is started it  will update the data in to the data base and displays the data in the log file.
+  * Once the blood pressure persistence is started it  will update the data in to the data base and displays the data in the log file.
 
 NOTE :` The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.`
 
@@ -311,9 +309,7 @@ Example:
 
         simulation_log_pulse_sub.conf     
 
-* Once the pulse oximeter subscriber is started it will retrieve data from the Topic. Subscriber uses ContentFilterTopic to retrieve messages based on the
-
-    Device ID from a single topic.
+* Once the pulse oximeter subscriber is started it will retrieve data from the Topic. Subscriber uses ContentFilterTopic to retrieve messages based on the Device ID from a single topic.
 
 NOTE : `The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.`
  
@@ -345,7 +341,7 @@ Example:
 
         simulation_log_pulse_sub.conf
 
-* Once the pulse oximeter alarm is started will retrieve the data and the displays in log file based on the default assessment or from the specified 
+  * Once the pulse oximeter alarm is started will retrieve the data and the displays in log file based on the default assessment or from the specified 
 
   arguments.
 
@@ -379,7 +375,7 @@ Example:
 
           simulation_log_pulse_sub.conf
   
-* Once the pulse oximeter persistence is started it will update the data in to the database and displays the data in the log file.
+  * Once the pulse oximeter persistence is started it will update the data in to the database and displays the data in the log file.
 
 NOTE : `The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.`
 
@@ -413,7 +409,7 @@ Example :
           production/conf/simulation_log_temp.conf
 
 
-* Once the publisher binds with the data generator and send a command, it receives data from data-generator and displays the data in the log files.
+  * Once the publisher binds with the data generator and send a command, it receives data from data-generator and displays the data in the log files.
 
 NOTE : `The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.`
 
@@ -442,7 +438,7 @@ Example:
           simulation_log_temp_sub.conf  
 
 
-* Once the temp subscriber is started it will retrieve data from the Topic. Subscriber uses ContentFilterTopic to retrieve messages based on the Device ID 
+  * Once the temp subscriber is started it will retrieve data from the Topic. Subscriber uses ContentFilterTopic to retrieve messages based on the Device ID 
 
 from a single topic.
 
@@ -478,7 +474,7 @@ Example:
     
           simulation_log_temp_sub.conf
 
-* Once the pulse oximeter alarm is started it will retrieve the data and the displays in log file based on the default assessment or from the specified 
+  * Once the pulse oximeter alarm is started it will retrieve the data and the displays in log file based on the default assessment or from the specified 
 
 arguments.
 
@@ -512,7 +508,7 @@ Example:
 
         simulation_log_temp_sub.conf
 
-* Once the temperature monitor persistence is started it will update the data in to the database and displays the data in the log file.
+  * Once the temperature monitor persistence is started it will update the data in to the database and displays the data in the log file.
 
 NOTE : `The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.`
 
