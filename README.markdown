@@ -116,7 +116,7 @@ STEPS TO RUN THE APPLICATIONS
 
 randomly corresponding to the publisher and send it to the publisher. The request can be from any of the three publishers listed below,
      
-* **3. BLOOD PRESSURE:**
+* **BLOOD PRESSURE:**
 
 3.1. Start the `blood pressure publisher` shall be started by passing the various options suffix to the command .
 
@@ -127,6 +127,8 @@ Available options  are:
         --help                   Produce help message
 
         --data-gen-ip arg        Data Generator IP 
+        
+        --data-gen-port          Data Generator Port
 
         --domain arg             Device Domain 
 
@@ -140,8 +142,9 @@ Available options  are:
     
 Example:
 
-      $./bp-pub --data-gen-ip 127.0.0.1 --domain blood --device-id BP_LAB3 --log-info blood.info --log-data blood.data --log4cpp-conf ../src/c++/production/conf/simulation_log_bp.conf
     
+    ./bp-pub --data-gen-ip 127.0.0.1 --data-gen-port 5000 --domain blood --device-id BP_LAB3 --log-info blood.info --log-data blood.data --log4cpp-conf ../src/c++/production/conf/simulation_log_bp.conf
+
 
   * Once the publisher binds with the data generator and send a command, it receives data from data-generator and displays the data in the log files.
 
@@ -253,7 +256,7 @@ Example
 NOTE :` The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.`
 
 
-* **4. PULSE OXIMETER:**
+* ** PULSE OXIMETER:**
 
 4.1. `Pulse oximeter publisher` shall be started by passing the various options suffix to the command .
 
@@ -264,6 +267,8 @@ Available options are:
         --help                Produce help message
 
         --data-gen-ip arg     Data Generator IP 
+        
+        --data-gen-port       Data Generator Port No.
 
         --domain arg          Device Domain 
        
@@ -277,9 +282,7 @@ Available options are:
 
 Example :
 
-        $ ./pulseox-pub --data-gen-ip 127.0.0.1 --domain pulse --device-id Pulse_LAB3 --log-info pulse.info --log-data pulse.data --log4cpp-conf ../src/c++/
-
-        production/conf/simulation_log_pulse.conf
+       ./pulseox-pub --data-gen-ip 127.0.0.1 --data-gen-port 5000 --domain pulse --device-id PULSE_LAB3 --log-info pulse.info --log-data pulse.data --log4cpp-conf ../src/c++/production/conf/simulation_log_pulse.conf
 
 * Once the publisher binds with the data generator and send a command, it receives data from data-generator and displays the data in the log files.
 
@@ -392,6 +395,8 @@ Available options are:
 
         --data-gen-ip arg     Data Generator IP 
 
+        --data-gen-port       Data Generator Port No.
+        
         --domain arg          Device Domain 
 
         --device-id arg       Device ID - for device identification
@@ -404,9 +409,7 @@ Available options are:
 
 Example :
 
-        $./tempmonitor-pub --data-gen-ip 127.0.0.1 --domain temp --device-id Temp_LAB123 --log-info temp.info --log-data temp.data --log4cpp-conf ../src/c++/
-
-          production/conf/simulation_log_temp.conf
+       ./tempmonitor-pub --data-gen-ip 127.0.0.1 --data-gen-port 5000 --domain temp --device-id TEMP_LAB3 --log-info temp.info --log-data temp.data --log4cpp-conf ../src/c++/production/conf/simulation_log_temp.conf
 
 
   * Once the publisher binds with the data generator and send a command, it receives data from data-generator and displays the data in the log files.
