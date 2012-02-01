@@ -1,15 +1,13 @@
 ############################################################################################
 #                                                                                          #
-#               	Medical Device Gateway Implementation                                    #
+#                 Netspective Fluent M2M Platform                                          #
 #                                                                                          #
 ############################################################################################
 
 OVERVIEW
 ========
-  Medical Device Gateway consists of interfaces to retrieve the medical data from the connected 
-medical devices in the hospital enterprise. It formats the data from the medical device into 
-standard patient information and transmits it into the hospital EHR and PHR. 
-It also provides the required information to the medical device data center for archival.
+Netspective Fluent consists of interfaces to retrieve data from connected devices through RS232, 
+Ethernet, USB, GSM, and other connection channels. 
 
 
 REQUIREMENTS
@@ -21,6 +19,7 @@ The requirements for compiling and running :
 * BOOST Process (Already shipped with SimD)
 * GCC/G++ v4.1 (or higher)
 * Log for c++ 1.0 (or higher)
+* Websocketpp (WebSocket C++ Library)
 
 INSTALLATION STEPS
 ------------------
@@ -33,10 +32,12 @@ OPENSPLICEDDS
   
     http://www.prismtech.com/opensplice/opensplice-dds-community/software-downloads
     
-  Extract the downloaded tar file with following command, after extracted the tar file you could find the HDE folder.
+  Extract the downloaded tar file with following command, after extracted the tar file you could find the HDE folder and configure the release.com with installation directory.
 
-      $ tar xf OpenSpliceDDSV5.4.1-x86_64.linux2.6-gcc412-gnuc25-HDE.tar.gz
+  Install the jdk updated version 
       
+      $ tar xf OpenSpliceDDSV5.4.1-x86_64.linux2.6-gcc412-gnuc25-HDE.tar.gz
+            
       $ source release.com
       
       $ ospl start
@@ -49,17 +50,13 @@ BOOST LIBRARY
 
 Boost libraries are intended to be widely useful, and usable across a broad spectrum of applications. 
 
-    $ yum install libboost-date-time-dev  libboost-dev libboost-doc libboost-filesystem-dev libboost-graph-dev 
-    
-      libboost-iostreams-dev libboost-program-options-dev libboost-python-dev libboost-regex-dev 
-      
-      libboost-signals-dev libboost-test-dev libboost-thread-dev
+    $ yum lists boost 
 
 DEVELOPMENT LIBRARIES
 ---------------------
 GCC is an integrated distribution of compilers for several major programming languages.
 
-    $ yum install build-essential
+    $ yum install "Development Tools"
 
 LOG FOR C++
 -----------
@@ -73,7 +70,134 @@ Log4cpp is library of C++ classes for logging to files, syslog and other destina
 
         $ make install
 
+GRAYLOG2 INSTALLATION:
+----------------------
 
+Graylog2 Server:
+
+**1** Graylog2 server and web interface shall be installed from the following steps
+  
+  Download the latest version of graylog2 server from the following link
+  
+    http://www.graylog2.org/download
+  
+  Extract the graylog2 server tar file using the command and change to the installation directory
+
+        $ tar -xvf graylog2-server-x.x.x
+     
+        $ cd graylog2-server-x.x.x/
+    
+  Configure the graylog2.conf file by copying it into  /etc/directory
+   
+  Starting the web server 
+   
+  Change into the bin/ folder of your graylog2-server installation and start the server by using the graylog2-ctl script:
+
+        $ cd bin/
+        
+        $ ./graylog2ctl start
+  
+  Could find a log in nohup.out in the same directory.
+  
+ * Start without control script
+    
+        $ java -jar graylog2-server.jar
+        
+ * Start with debug parameter to get debug output
+  
+        $ java -jar graylog2-server.jar --debug
+  
+ * Define a config file other than /etc/graylog2.conf
+  
+        $ java -jar graylog2-server.jar -f /../../config.conf
+  
+Elastic Search 
+
+ Download elasticsearch, most recent version [from here](http://www.elasticsearch.org/download/) and unpack it, 
+
+  $ tar xzfv elasticsearch-0.18.6.tar.gz
+
+ Configure basic elasticsearch values in the existing graylog.conf or any other alternative file
+
+    $ network.host: <ip address>
+    
+    $ path.logs: /var/log/elasticsearch
+
+	  $ path.data: /var/data/elasticsearch
+
+	  $ cluster.name: graylog2
+
+ Download elasticsearch-servicewrapper using the following link from the terminal  
+
+	$wget https://github.com/elasticsearch/elasticsearch-servicewrapper/zipball/master
+
+	$mv master elasticsearch-servicewrapper.zip && unzip elasticsearch-servicewrapper.zip
+	
+	$mv elasticsearch-elasticsearch-servicewrapper-*/* . && rm -rf elasticsearch-elasticsearch-servicewrapper-*
+
+ Configure the elasticsearch.yml in the config directory 
+
+	* Create the directory as /path/data/elasticsearch for data 
+ 
+	* Create the directory as /path/logs/elasticsearch for logs with the file 
+
+ Configure elasticsearch.conf in the service directory
+
+	* Alter the home path to the elastic search installation directory
+	
+ Start elasticsearch instance using the command 
+
+	$ ./elasticsearch start 
+
+ Elasticsearch instance started successfully the we can check it in the log files either  in the same directory or default in  /var/log/elasticsearch/
+
+graylog2.log.
+
+Graylog2-Web Interface
+
+ Download the recent version of web interface from the following link
+
+	* http://www.graylog2.org/download
+
+ Configure new web-interface (copy old configs, adapt new parameters, create new indexer.yml file with correct elasticsearch settings),
+
+	* indexer.yml
+
+	* mongoid.yml
+
+	* general.yml
+
+ Install the latest version of ruby on rails which should be 1.8.7 to 1.9.2,follow  the steps [from the here](
+
+ http://torqueo.net/installing-ruby-192-and-rails-3-stable-on-ubuntu/) or using below staps shall make install   
+
+	$ wget ftp://ftp.ruby-lang.org//pub/ruby/1.9/ruby-1.9.2-p0.tar.gz
+
+	$ tar -xvzf ruby-1.9.2-p0.tar.gz
+
+	$ cd ruby-1.9.2-p0/
+
+	$ ./configure --prefix=/usr/local/ruby
+	
+	$ make && sudo make install
+
+ Need to export the PATH variable that path - /usr/local/ruby/bin, should look something like this:
+
+	$ export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/ruby/bin"
+
+	$ export GEM_HOME="path"
+
+ Run the source command for the file /etc/environment to apply changes
+	
+	$ source /etc/environment
+
+ Start the web interface from the installation folder by using the command
+
+	$ script/rails server -e production -p "PORTNO"
+  
+Note:`The configured the database name,username,password ,<ip address> in all config file should be as common `
+    
+    
 COMPILATION STEPS
 -----------------
 
@@ -212,7 +336,7 @@ Available options are:
 
         --device-id arg           Device ID for identification
 
-        --log-info arg            Log info category
+        --log-info arg            Log information category
 
         --log-data arg            Log data category 
 
@@ -259,7 +383,7 @@ Available options are:
         
         --database            Database Name
 
-        --log-info arg        Log info category
+        --log-info arg        Log information category
 
         --log-data arg        Log data category
  
@@ -275,7 +399,31 @@ Example
 
 NOTE :` The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.`
 
+**Common Webserver:**
+  
+  * Start the `Common Webserver`in the terminal by passing few options suffix to the command ,it can be used as common for all the subsrcibers-webserver
 
+        $./web-listener
+
+Available Options are:
+        
+        --web server name      Webserver Name
+        
+        --port_no              Port Number
+        
+  Example
+      
+        $./web-listener netspective-webserver.com 9003
+        
+  * Once the subscriber starts as webserver the data about  domain and device  will be recieved on the web browser.
+  
+    The web browser can be access data through the following URL 
+      
+      `http://netspective-webserver.com/medigraph/index.php?domain_id=DOMAINID&device_id=DEVICEID` 
+
+NOTE: `Domain name and device id are missed in the URL then the entire device data will be displayed.`
+
+              
 **PULSE OXIMETER:**
 
 **4.1.** `Pulse oximeter publisher` shall be started by passing the various options suffix to the command .
@@ -367,7 +515,7 @@ Available options are:
 
         --device-id arg      Device ID for identification
   
-        --log-info arg       Log info category
+        --log-info arg       Log information category
   
         --log-data arg       Log data category 
  
@@ -405,7 +553,7 @@ Available options are:
         
         --database           Database Name
   
-        --log-info arg       Log info category
+        --log-info arg       Log information category
   
         --log-data arg       Log data category
   
@@ -420,7 +568,6 @@ Example:
   * Once the pulse oximeter persistence is started it will update the data in to the database and displays the data in the log file.
 
 NOTE : `The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.`
-
 
 **TEMPERATURE MONITOR:**
 
@@ -472,7 +619,7 @@ Available options are:
 
 EXAMPLE:
        
-        $./tempmonitor-pub.sh --domain=blood --device-id=BP --spawn=5 --log4cpp-conf ../src/c++/production/conf/simulation_log_bp.conf
+        $./temperature-pub.sh --domain=blood --device-id=BP --spawn=5 --log4cpp-conf ../src/c++/production/conf/simulation_log_bp.conf
   
   
  NOTE : `The arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format`
@@ -480,7 +627,7 @@ EXAMPLE:
  
 **5.2.** Start the `temperature monitor subscribers` on the other terminal by passing the various options suffix to the command ,
 
-          $./tempmonitor-sub-echo
+          $./tempmerature-sub-echo
 
 Available options are:
 
@@ -490,7 +637,7 @@ Available options are:
 
         --device-id arg         Device ID - for device identification
 
-        --log-info arg          Log file category
+        --log-info arg          Log information category
 
         --lod-data arg      		Log data file 
 
@@ -498,7 +645,7 @@ Available options are:
 
 Example:
 
-        $ ./temp-sub-echo --domain temp --device-id Temp_LAB123 --log-info temp.info --log-data temp.echo --log4cpp-conf ../src/c++/production/conf/simulation_log_temp_sub.conf  
+        $ ./temperature-sub-echo --domain temp --device-id Temp_LAB123 --log-info temp.info --log-data temp.echo --log4cpp-conf ../src/c++/production/conf/simulation_log_temp_sub.conf  
 
   * Once the temp subscriber is started it will retrieve data from the Topic. Subscriber uses ContentFilterTopic to retrieve messages based on the Device ID from a single topic.
 
@@ -506,7 +653,7 @@ NOTE :  `The category name arguments passed to the application needs to be confi
 
 **5.3.**  Start the `temperature-monitor alarm` by passing the various options suffix to the command ,
 
-        $./tempmonitor-sub-alarm
+        $./tempmerature-sub-alarm
 
 Available options are:
 
@@ -516,7 +663,7 @@ Available options are:
   
         --device-id arg         Device ID for identification
   
-        --log-info arg          Log info category
+        --log-info arg          Log information category
   
         --log-data arg          Log data category 
   
@@ -530,7 +677,7 @@ Available options are:
 
 Example:
 
-        $ ./tempmonitor-sub-alarm --domain pulse --device-id TEMP_LAB3 --log-info temp.info --log-data temp.alarm --log4cpp-conf ../src/c++/production/conf/simulation_log_temp_sub.conf
+        $ ./temperature-sub-alarm --domain pulse --device-id TEMP_LAB3 --log-info temp.info --log-data temp.alarm --log4cpp-conf ../src/c++/production/conf/simulation_log_temp_sub.conf
 
   * Once the pulse oximeter alarm is started it will retrieve the data and the displays in log file based on the default assessment or from the specified 
 
@@ -540,7 +687,7 @@ NOTE : `The category name arguments passed to the application needs to be config
 
 **5.4.** Start the `temperature-monitor persistence` by passing the various options suffix to the command,
 
-         $./tempmonitor-sub-persist 
+         $./temperature-sub-persist 
 
 Available options are:
 
@@ -554,7 +701,7 @@ Available options are:
         
         --database            Database Name
 
-        --log-info arg        Log info category
+        --log-info arg        Log information category
   
         --log-data arg        Log data category 
   
@@ -562,13 +709,74 @@ Available options are:
 
 Example:
 
-        $./tempmonitor-sub-persist --domain pulse --device-id TEMP_LAB3 --log-info temp.info --log-data temp.persist --log4cpp-conf ../src/c++/production/conf/
+        $./temperature-sub-persist --domain pulse --device-id TEMP_LAB3 --log-info temp.info --log-data temp.persist --log4cpp-conf ../src/c++/production/conf/
 
         simulation_log_temp_sub.conf
 
   * Once the temperature monitor persistence is started it will update the data in to the database and displays the data in the log file.
 
 NOTE : `The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.`
+
+** ECG **
+
+**6.1**  Ecg publisher shall be started by passing the various options suffix to the command.
+
+    $./ecg-pub --
+
+Available options are:
+  
+        --help                Produce help message
+
+        --data-gen-ip arg     Data Generator IP 
+
+        --data-gen-port       Data Generator Port No.
+        
+        --domain arg          Device Domain 
+
+        --device-id arg       Device ID - for device identification
+
+        --log-info arg        Log information category
+
+        --log-data arg        Log data category  
+
+        --log4cpp-conf arg    Log configuration and format specification file
+
+Example :
+
+        ./ecg-pub --data-gen-ip 127.0.0.1 --data-gen-port 5000 --domain ECG --device-id ECG_LAB44 --log-info ecg.info --log-data ecg.data --log4cpp-conf ../src/c++/production/conf/simulation_log_ecg.conf 
+
+* Once the publisher binds with the data generator and send a command, it receives data from data-generator and displays the data in the log files.
+
+NOTE : `The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.`
+
+**6.2.** Start the `ecg subscribers` on the other terminal by passing the various options suffix to the command ,
+
+          $./ecg-sub-echo
+
+Available options are:
+
+        --help                  Produce help message
+
+        --domain arg            Device Domain 
+
+        --device-id arg         Device ID - for device identification
+
+        --log-info arg          Log information category
+
+        --lod-data arg        	Log data file 
+
+        --log4cpp-conf arg      Log configuration and format specification file
+
+Example:
+
+        ./ecg-sub-echo --domain ECG --device-id ECG_LAB44 --log-info ecg.info --log-data ecg.echo --log4cpp-conf ../src/c++/production/conf/simulation_log_ecg_sub.conf
+  
+* Once the temp subscriber is started it will retrieve data from the ContentFilterTopic to retrieve messages based on the Device ID from a single topic.
+
+NOTE :  `The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.`
+
+
+
 
 
 STEPS TO RUN THE DISTRIBUTED APPLICATION:
@@ -596,7 +804,7 @@ NOTE : `The same configuration changes needs to reflected in all the machines ru
 
 **3.** Architecture of Distributed Application will be  as following structure:
 
-  `
+  
   `DataGenerator & Publishers[OsplDDS]  ---------------------->   Central[OsplDDS]  -------------------->   Subscribers[OsplDDS]`
       
     
