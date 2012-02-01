@@ -50,7 +50,7 @@ BOOST LIBRARY
 
 Boost libraries are intended to be widely useful, and usable across a broad spectrum of applications. 
 
-Download the recent version of boost library by [clicking here].(http://www.boost.org/users/download/)
+Download the recent version of boost library by [click here to download](http://www.boost.org/users/download/)
 
 Extract  the boost.library tar file 
 
@@ -72,8 +72,7 @@ GCC is an integrated distribution of compilers for several major programming lan
 
 LOG FOR C++
 -----------
-Log4cpp is library of C++ classes for logging to files, syslog and other destinations [click here to download] (http://sourceforge.net/projects/log4cpp/
-files/) for log4cpp libraries.
+Log4cpp is library of C++ classes for logging to files, syslog and other destinations [click here to download](http://sourceforge.net/projects/log4cpp/files/) for log4cpp libraries.
 
         $ ./configure
 
@@ -91,9 +90,7 @@ Graylog2 Server:
 
 **1** Graylog2 server and web interface shall be installed from the following steps
   
-  Download the latest version of graylog2 server from the following link
-  
-    http://www.graylog2.org/download
+  Download the latest version of graylog2 server from the link [click here to download](https://github.com/Graylog2/graylog2-server/downloads)
   
   Extract the graylog2 server tar file using the command and change to the installation directory
 
@@ -128,7 +125,7 @@ Graylog2 Server:
 Elastic Search 
 --------------
 
- Download elasticsearch, most recent version [from here](http://www.elasticsearch.org/download/) and unpack it, 
+ Download elasticsearch, most recent version from this link [click here to download](http://www.elasticsearch.org/download/) and unpack it, 
 
 	$ tar xzfv elasticsearch-0.18.6.tar.gz
 
@@ -173,9 +170,7 @@ Note:`The configured the database name, user name, password in all config file s
 Graylog2-Web Interface:
 ----------------------
 
- Download the recent version of web interface from the following link
-
-	* http://www.graylog2.org/download
+ Download the recent version of web interface from the following link [click here to download](https://github.com/Graylog2/graylog2-web-interface/downloads)
 
  Configure new web-interface (copy old configs, adapt new parameters, create new indexer.yml file with correct elasticsearch settings),
 
