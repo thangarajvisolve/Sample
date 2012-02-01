@@ -50,17 +50,30 @@ BOOST LIBRARY
 
 Boost libraries are intended to be widely useful, and usable across a broad spectrum of applications. 
 
-    $ yum lists boost 
+Download the recent version of boost library by [clicking here].(http://www.boost.org/users/download/)
+
+Extract  the boost.library tar file 
+
+      	$ tar -xvf boost-x.x.x.gz
+
+Change to installation directory 
+
+  	$./bootstrap.sh and follow the instructions to until it completes successfully
+	
+/*	export LD_LIBRARY_PATH=/usr/local/boost_1_48_0/stage/lib:
+	export CPLUS_INCLUDE_PATH=/usr/local/boost_1_48_0:*/
+
 
 DEVELOPMENT LIBRARIES
 ---------------------
 GCC is an integrated distribution of compilers for several major programming languages.
 
-    $ yum install "Development Tools"
+	$ yum install "Develoment Tools"
 
 LOG FOR C++
 -----------
-Log4cpp is library of C++ classes for logging to files, syslog and other destinations.[Click here to download]  (http://sourceforge.net/projects/log4cpp/files/) for log4cpp libraries.
+Log4cpp is library of C++ classes for logging to files, syslog and other destinations [click here to download] (http://sourceforge.net/projects/log4cpp/
+files/) for log4cpp libraries.
 
         $ ./configure
 
@@ -71,9 +84,10 @@ Log4cpp is library of C++ classes for logging to files, syslog and other destina
         $ make install
 
 GRAYLOG2 INSTALLATION:
-----------------------
+=====================
 
 Graylog2 Server:
+----------------
 
 **1** Graylog2 server and web interface shall be installed from the following steps
   
@@ -83,13 +97,13 @@ Graylog2 Server:
   
   Extract the graylog2 server tar file using the command and change to the installation directory
 
-        $ tar -xvf graylog2-server-x.x.x
+        tar -xvf graylog2-server-x.x.x
      
-        $ cd graylog2-server-x.x.x/
+        cd graylog2-server-x.x.x/
     
-  Configure the graylog2.conf file by copying it into  /etc/directory
+  Configure the graylog2.conf file by copying it into  /etc/
    
-  Starting the web server 
+  Starting the graylog2-server 
    
   Change into the bin/ folder of your graylog2-server installation and start the server by using the graylog2-ctl script:
 
@@ -99,46 +113,47 @@ Graylog2 Server:
   
   Could find a log in nohup.out in the same directory.
   
- * Start without control script
+  Start without control script
     
         $ java -jar graylog2-server.jar
         
- * Start with debug parameter to get debug output
+  Start with debug parameter to get debug output
   
         $ java -jar graylog2-server.jar --debug
   
- * Define a config file other than /etc/graylog2.conf
+  Define a config file other than /etc/graylog2.conf
   
         $ java -jar graylog2-server.jar -f /../../config.conf
   
 Elastic Search 
+--------------
 
  Download elasticsearch, most recent version [from here](http://www.elasticsearch.org/download/) and unpack it, 
 
-  $ tar xzfv elasticsearch-0.18.6.tar.gz
+	$ tar xzfv elasticsearch-0.18.6.tar.gz
 
  Configure basic elasticsearch values in the existing graylog.conf or any other alternative file
 
-    $ network.host: <ip address>
-    
-    $ path.logs: /var/log/elasticsearch
+	$ network.host: 0.0.0.0
 
-	  $ path.data: /var/data/elasticsearch
+	$ path.logs: /var/log/elasticsearch
 
-	  $ cluster.name: graylog2
+	$ path.data: /var/data/elasticsearch
+
+	$ cluster.name: graylog2
 
  Download elasticsearch-servicewrapper using the following link from the terminal  
 
-	$wget https://github.com/elasticsearch/elasticsearch-servicewrapper/zipball/master
+	$ wget https://github.com/elasticsearch/elasticsearch-servicewrapper/zipball/master
 
-	$mv master elasticsearch-servicewrapper.zip && unzip elasticsearch-servicewrapper.zip
+	$ mv master elasticsearch-servicewrapper.zip && unzip elasticsearch-servicewrapper.zip
 	
-	$mv elasticsearch-elasticsearch-servicewrapper-*/* . && rm -rf elasticsearch-elasticsearch-servicewrapper-*
+	$ mv elasticsearch-elasticsearch-servicewrapper-*/* . && rm -rf elasticsearch-elasticsearch-servicewrapper-*
 
  Configure the elasticsearch.yml in the config directory 
 
 	* Create the directory as /path/data/elasticsearch for data 
- 
+	
 	* Create the directory as /path/logs/elasticsearch for logs with the file 
 
  Configure elasticsearch.conf in the service directory
@@ -153,7 +168,10 @@ Elastic Search
 
 graylog2.log.
 
-Graylog2-Web Interface
+Note:`The configured the database name, user name, password in all config file should be as common`
+
+Graylog2-Web Interface:
+----------------------
 
  Download the recent version of web interface from the following link
 
@@ -167,9 +185,7 @@ Graylog2-Web Interface
 
 	* general.yml
 
- Install the latest version of ruby on rails which should be 1.8.7 to 1.9.2,follow  the steps [from the here](
-
- http://torqueo.net/installing-ruby-192-and-rails-3-stable-on-ubuntu/) or using below staps shall make install   
+ Install the latest version of ruby on rails which should be 1.8.7 to 1.9.2,the following the steps makes install
 
 	$ wget ftp://ftp.ruby-lang.org//pub/ruby/1.9/ruby-1.9.2-p0.tar.gz
 
@@ -183,20 +199,34 @@ Graylog2-Web Interface
 
  Need to export the PATH variable that path - /usr/local/ruby/bin, should look something like this:
 
-	$ export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/ruby/bin"
+	$ PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/ruby/bin"
 
-	$ export GEM_HOME="path"
+	$ GEM_HOME="path"
 
  Run the source command for the file /etc/environment to apply changes
 	
 	$ source /etc/environment
 
+ Now create a symbolic link for ruby and gem program
+
+	$ sudo ln -s /usr/local/ruby/bin/ruby /usr/local/bin/ruby
+	
+	$ sudo ln -s /usr/local/ruby/bin/gem /usr/bin/gem
+
+ Now install the required gem packages, including Rails 3
+
+	$sudo gem install tzinfo builder memcache-client rack rack-test erubis mail text-format bundler thor i18n sqlite3-ruby
+	
+ 	$ sudo gem install rack-mount --version=0.4.0
+
+	$ sudo gem install rails --version 3.0.0
+
+
  Start the web interface from the installation folder by using the command
 
 	$ script/rails server -e production -p "PORTNO"
-  
-Note:`The configured the database name,username,password ,<ip address> in all config file should be as common `
     
+ Note:`The configured the database name, user name, password in all config file should be as common`
     
 COMPILATION STEPS
 -----------------
@@ -639,7 +669,7 @@ Available options are:
 
         --log-info arg          Log information category
 
-        --lod-data arg      		Log data file 
+        --lod-data arg      	Log data file 
 
         --log4cpp-conf arg      Log configuration and format specification file
 
@@ -657,9 +687,9 @@ NOTE :  `The category name arguments passed to the application needs to be confi
 
 Available options are:
 
-        --help		              Produce help message
+        --help		        Produce help message
 
-        --domain arg	    	    Device Domain
+        --domain arg	        Device Domain
   
         --device-id arg         Device ID for identification
   
