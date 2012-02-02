@@ -122,7 +122,7 @@ Elastic Search
 		
 		$ mkdir /var/log/elasticsearch
 
-* Configure basic elasticsearch values in the existing config/elasticsearch.yml .[elasticsearch configurations details](http://www.elasticsearch.org/guide/reference/setup/configuration.html)
+* Configure basic elasticsearch values in the existing config/elasticsearch.yml [elasticsearch configurations details](http://www.elasticsearch.org/guide/reference/setup/configuration.html)
 
 		$ network.host: <ipaddress>
 		
@@ -132,13 +132,13 @@ Elastic Search
 
 		$ cluster.name: graylog2
 
-* Download elasticsearch-servicewrapper using the following link from the terminal from the same directory where elastic search was installed. 
+* Download elasticsearch-servicewrapper into your elasticserach/bin installation directory and unpack it there,using the following link from the terminal from the same directory where elastic search was installed. 
 
 		$ wget https://github.com/elasticsearch/elasticsearch-servicewrapper/zipball/master
 
 		$ mv master elasticsearch-servicewrapper.zip && unzip elasticsearch-servicewrapper.zip
 	
-		$ mv elasticsearch-elasticsearch-servicewrapper-*/* bin/ && rm -rf elasticsearch-elasticsearch-servicewrapper-*
+		$ mv elasticsearch-elasticsearch-servicewrapper-*/* . && rm -rf elasticsearch-elasticsearch-servicewrapper-*
 
 * Update the set.default.ES_HOME path in bin/service/elasticsearch.conf to elastic search installation directory.
 	
@@ -162,7 +162,7 @@ Graylog2-Web Interface:
 
 		$ general.yml
 
- * Install the latest version of ruby on rails which should be 1.9.2,follow the steps by for installation.[Clicking here]( http://torqueo.net/installing-ruby-192-and-rails-3) or using below steps shall make to install   
+ * Install the latest version of ruby on rails which should be 1.9.2,follow the steps  for installation by [clicking here]( http://torqueo.net/installing-ruby-192-and-rails-3) or using below steps shall make to install   
 
 		$ wget ftp://ftp.ruby-lang.org//pub/ruby/1.9/ruby-1.9.2-p0.tar.gz
 
@@ -179,7 +179,6 @@ Graylog2-Web Interface:
 		$ PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/ruby/bin"
 
 		$ GEM_HOME="/../../ruby-1.9.2-p0
-"
 
  * Run the source command for the file /etc/environment to apply changes
 	
@@ -204,7 +203,7 @@ Graylog2-Web Interface:
 
 		$ script/rails server -e production -p "PORTNO"
     
- Note:`The configured database name,user name,password in graylog2.conf,mongoid.yml,indexer.yml should be as common`
+ Note:`The configured ipaddress,port numbers,database name,user name,password in graylog2.conf,mongoid.yml,indexer.yml should be as common`
     
 COMPILATION STEPS
 -----------------
