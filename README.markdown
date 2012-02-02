@@ -154,7 +154,13 @@ Graylog2-Web Interface:
 
  * Download the recent version of web interface from the link.[Click here to download](https://github.com/Graylog2/graylog2-web-interface/downloads)
  
- * Configure new web-interface (copy old configs, adapt new parameters, create new indexer.yml file with correct elasticsearch settings),
+ * Extract the downloaded zip file using the following command abd change to the instaaltion directory
+ 		
+		$ tar -xvf graylog2-webinterface-0.9.6.tar.gz.
+		
+		$ cd graylog2-webinterface-0.9.6/
+ 
+ * Update new web-interface configurations(copy old configs, adapt new parameters, create new indexer.yml file with correct elasticsearch settings),
 
 		$ indexer.yml
 
@@ -162,7 +168,7 @@ Graylog2-Web Interface:
 
 		$ general.yml
 
- * Install the latest version of ruby on rails which should be 1.9.2,follow the steps  for installation by [clicking here]( http://torqueo.net/installing-ruby-192-and-rails-3) or using below steps shall make to install   
+ * Install the latest version of ruby on rails which should be 1.9.2,follow the steps for installation by [clicking here]( http://torqueo.net/installing-ruby-192-and-rails-3) or using below steps shall make to install   
 
 		$ wget ftp://ftp.ruby-lang.org//pub/ruby/1.9/ruby-1.9.2-p0.tar.gz
 
