@@ -34,7 +34,7 @@ OPENSPLICEDDS
         
 * Extract the downloaded tar file with following command, after extracted the tar file you could find the HDE folder and configure the release.com with installation directory.
 
-      	$ tar xf OpenSpliceDDSV5.4.1-x86_64.linux2.6-gcc412-gnuc25-HDE.tar.gz
+      	$ tar -xvf OpenSpliceDDSV5.4.1-x86_64.linux2.6-gcc412-gnuc25-HDE.tar.gz
 
 * Use the given commands to setup the environment and start DDS service
 
@@ -51,7 +51,7 @@ Boost libraries are intended to be widely used, and usable across a broad spectr
 
 * Extract the boost.library tar file 
 
-      	$ tar -xvf boost-x.x.x.gz
+      	$ tar -xvf boost/boost_1_48_0.tar.gz
 
 * Change to installation directory and run the following command. Follow the instructions until the installation was successful.
 
@@ -112,7 +112,7 @@ Elastic Search
 
 * Download elasticsearch recent version.[Click here to download](http://www.elasticsearch.org/download/) and unpack it, 
 
-		$ tar xzfv elasticsearch-0.18.6.tar.gz
+		$ tar -xvf elasticsearch-0.18.6.tar.gz
 		
 		$ cd elasticsearch-0.18.6
 		
@@ -122,10 +122,10 @@ Elastic Search
 		
 		$ mkdir /var/log/elasticsearch
 
-* Configure basic elasticsearch values in the existing config/elasticsearch.yml
+* Configure basic elasticsearch values in the existing config/elasticsearch.yml .[elasticsearch configurations details](http://www.elasticsearch.org/guide/reference/setup/configuration.html)
 
-		$ network.host: 0.0.0.0
-
+		$ network.host: <ipaddress>
+		
 		$ path.logs: /var/log/elasticsearch
 
 		$ path.data: /var/data/elasticsearch
