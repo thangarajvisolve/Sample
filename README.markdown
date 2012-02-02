@@ -88,7 +88,7 @@ files/) for log4cpp libraries.
 GRAYLOG2 INSTALLATION:
 ---------------------
 
-* Graylog2 server elasticsearch and web interface shall make install from the following steps
+* Graylog2 server elasticsearch and web interface would make install in the following steps
 
 Graylog2 Server:
 
