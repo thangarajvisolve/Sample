@@ -28,30 +28,28 @@ OPENSPLICEDDS
 -------------
   OpenSplice DDS is one of several open source implementation of the OMG Data Distribution Service for Real-Time Systems (DDS) standard.
   
+* OpenJDK is pre-requisite for OpenSpliceDDS. Install latest version of OpenJDK.
+
 * Download the OpenSplice  version of `OpenSpliceDDSV5.4.1-x86_64.linux2.6-gcc412-gnuc25-HDE.tar.gz` from the following link.[Click Here to Download](http://www.prismtech.com/opensplice/opensplice-dds-community/software-downloads)
-  
         
 * Extract the downloaded tar file with following command, after extracted the tar file you could find the HDE folder and configure the release.com with installation directory.
 
-* Install the Openjdk latest version 
-      
       	$ tar xf OpenSpliceDDSV5.4.1-x86_64.linux2.6-gcc412-gnuc25-HDE.tar.gz
-            
+
+* Use the given commands to setup the environment and start DDS service
+
       	$ source release.com
       
       	$ ospl start
 
-* Use the above commands to source the path and to start  OpenSplice.
-
-      
 BOOST LIBRARY
 ------------
 
-Boost libraries are intended to be widely useful, and usable across a broad spectrum of applications. 
+Boost libraries are intended to be widely used, and usable across a broad spectrum of applications. 
 
 * Download the recent version of boost library  [click here to download](http://www.boost.org/users/download/)
 
-* Extract  the boost.library tar file 
+* Extract the boost.library tar file 
 
       	$ tar -xvf boost-x.x.x.gz
 
