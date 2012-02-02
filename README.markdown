@@ -76,6 +76,10 @@ LOG FOR C++
 
 Log4cpp is library of C++ classes for logging to files, syslog and other destinations.[Click here to download](http://sourceforge.net/projects/log4cpp/
 files/) for log4cpp libraries. Follow the steps given below to install Log4cpp
+		
+		$ tar -xvf log4cpp-1.0.x.tar.gz
+	
+		$ cd log4cpp-1.0.x
 
         $ ./configure
 
@@ -96,7 +100,7 @@ Graylog2 Server:
  
 * Extract the graylog2 server tar file using the command and change to the installation directory
 
-        $ tar -xvf graylog2-server-0.9.6
+        $ tar -xvf graylog2-server-0.9.6.tar.gz
      
         $ cd graylog2-server-0.9.6/
     
