@@ -74,7 +74,7 @@ GCC is an integrated distribution of compilers for several major programming lan
 
 LOG FOR C++
 -----------
-Log4cpp is library of C++ classes for logging to files, syslog and other destinations [click here to download] (http://sourceforge.net/projects/log4cpp/
+Log4cpp is library of C++ classes for logging to files, syslog and other destinations.[Click here to download](http://sourceforge.net/projects/log4cpp/
 files/) for log4cpp libraries.
 
         $ ./configure
@@ -87,10 +87,11 @@ files/) for log4cpp libraries.
 
 GRAYLOG2 INSTALLATION:
 ---------------------
+
+* Graylog2 server elasticsearch and web interface shall make install from the following steps
+
 Graylog2 Server:
 
-* Graylog2 server and web interface shall be installed from the following steps
-  
 * Download the latest version of graylog2 server from the following link
   
     	$ http://www.graylog2.org/download
@@ -101,17 +102,17 @@ Graylog2 Server:
      
         $ cd graylog2-server-x.x.x/
     
-* Configure the graylog2.conf file by copying it into  /etc/
+* Configure the graylog2.conf file by copying it into /etc/
    
 * Starting the graylog2-server 
    
-* Change into the bin/ folder of your graylog2-server installation and start the server by using the graylog2-ctl script:
+* Change into the bin/ folder in graylog2-server installation and start the server by using the graylog2-ctl script:
 
         $ cd bin/
         
         $ ./graylog2ctl start
   
-* Could find a log in nohup.out in the same directory.
+* We could find a log in nohup.out in the same directory.
   
 * Start without control script
     
@@ -127,7 +128,7 @@ Graylog2 Server:
   
 Elastic Search 
 
-* Download elasticsearch, most recent version [click here to download](http://www.elasticsearch.org/download/) and unpack it, 
+* Download elasticsearch recent version.[Click here to download](http://www.elasticsearch.org/download/) and unpack it, 
 
 		$ tar xzfv elasticsearch-0.18.6.tar.gz
 
@@ -171,7 +172,7 @@ graylog2.log.
 
 Graylog2-Web Interface:
 
- * Download the recent version of web interface from the link [click here to download](https://github.com/Graylog2/graylog2-web-interface/downloads)
+ * Download the recent version of web interface from the link.[Click here to download](https://github.com/Graylog2/graylog2-web-interface/downloads)
  
  * Configure new web-interface (copy old configs, adapt new parameters, create new indexer.yml file with correct elasticsearch settings),
 
@@ -181,7 +182,7 @@ Graylog2-Web Interface:
 
 		$ general.yml
 
- * Install the latest version of ruby on rails which should be 1.8.7 to 1.9.2,follow  the steps [Click here ]( http://torqueo.net/installing-ruby-192-and-rails-3) or using below staps shall make to install   
+ * Install the latest version of ruby on rails which should be 1.8.7 to 1.9.2,follow the steps by [Clicking here]( http://torqueo.net/installing-ruby-192-and-rails-3) or using below steps shall make to install   
 
 		$ wget ftp://ftp.ruby-lang.org//pub/ruby/1.9/ruby-1.9.2-p0.tar.gz
 
@@ -222,7 +223,7 @@ Graylog2-Web Interface:
 
 		$ script/rails server -e production -p "PORTNO"
     
- Note:`The configured the database name, user name, password in all config file should be as common`
+ Note:`The configured database name,user name,password in all config file should be as common`
     
 COMPILATION STEPS
 -----------------
