@@ -60,8 +60,11 @@ Boost libraries are intended to be widely useful, and usable across a broad spec
 
   	$./bootstrap.sh and follow the instructions to until it completes successfully
 	
-/*	export LD_LIBRARY_PATH=/usr/local/boost_1_48_0/stage/lib:
-	export CPLUS_INCLUDE_PATH=/usr/local/boost_1_48_0:*/
+* Need to export the PATH variable that path
+    		
+	$ export LD_LIBRARY_PATH=/usr/local/boost_1_48_0/stage/lib:
+
+	$ export CPLUS_INCLUDE_PATH=/usr/local/boost_1_48_0:*/
 
 
 DEVELOPMENT LIBRARIES
@@ -77,7 +80,7 @@ files/) for log4cpp libraries.
 
         $ ./configure
 
-        $ make
+        $ make	
 
         $ make check
 
@@ -91,7 +94,7 @@ Graylog2 Server:
   
 * Download the latest version of graylog2 server from the following link
   
-    	$http://www.graylog2.org/download
+    	$ http://www.graylog2.org/download
  
 * Extract the graylog2 server tar file using the command and change to the installation directory
 
@@ -113,7 +116,7 @@ Graylog2 Server:
   
 * Start without control script
     
-        $ java -jar graylog2-server.jar
+	$ java -jar graylog2-server.jar
         
 * Start with debug parameter to get debug output
   
@@ -125,41 +128,41 @@ Graylog2 Server:
   
 Elastic Search 
 
-* Download elasticsearch, most recent version [from here](http://www.elasticsearch.org/download/) and unpack it, 
+* Download elasticsearch, most recent version [click here to download](http://www.elasticsearch.org/download/) and unpack it, 
 
-	$ tar xzfv elasticsearch-0.18.6.tar.gz
+		$ tar xzfv elasticsearch-0.18.6.tar.gz
 
 * Configure basic elasticsearch values in the existing graylog.conf or any other alternative file
 
-	$ network.host: 0.0.0.0
+		$ network.host: 0.0.0.0
 
-	$ path.logs: /var/log/elasticsearch
+		$ path.logs: /var/log/elasticsearch
 
-	$ path.data: /var/data/elasticsearch
+		$ path.data: /var/data/elasticsearch
 
-	$ cluster.name: graylog2
+		$ cluster.name: graylog2
 
 * Download elasticsearch-servicewrapper using the following link from the terminal  
 
-	$ wget https://github.com/elasticsearch/elasticsearch-servicewrapper/zipball/master
+		$ wget https://github.com/elasticsearch/elasticsearch-servicewrapper/zipball/master
 
-	$ mv master elasticsearch-servicewrapper.zip && unzip elasticsearch-servicewrapper.zip
+		$ mv master elasticsearch-servicewrapper.zip && unzip elasticsearch-servicewrapper.zip
 	
-	$ mv elasticsearch-elasticsearch-servicewrapper-*/* . && rm -rf elasticsearch-elasticsearch-servicewrapper-*
+		$ mv elasticsearch-elasticsearch-servicewrapper-*/* . && rm -rf elasticsearch-elasticsearch-servicewrapper-*
 
 * Configure the elasticsearch.yml in the config directory 
 
-	$ Create the directory as /path/data/elasticsearch for data 
+		$ Create the directory as /path/data/elasticsearch for data 
 	
-	$ Create the directory as /path/logs/elasticsearch for logs with the file 
+		$ Create the directory as /path/logs/elasticsearch for logs with the file 
 
 * Configure elasticsearch.conf in the service directory
 
-	$ Alter the home path to the elastic search installation directory
+		$ Alter the home path to the elastic search installation directory
 	
 * Start elasticsearch instance using the command 
 
-	$ ./elasticsearch start 
+		$ ./elasticsearch start 
 
 * Elasticsearch instance started successfully the we can check it in the log files either  in the same directory or default in  /var/log/elasticsearch/
 
@@ -169,56 +172,56 @@ graylog2.log.
 
 Graylog2-Web Interface:
 
- * Download the recent version of web interface from the link [click here to download](https://github.com/Graylog2/graylog2-web-interface/downloads
+ * Download the recent version of web interface from the link [click here to download](https://github.com/Graylog2/graylog2-web-interface/downloads)
  
  * Configure new web-interface (copy old configs, adapt new parameters, create new indexer.yml file with correct elasticsearch settings),
 
-	* indexer.yml
+		$ indexer.yml
 
-	* mongoid.yml
+		$ mongoid.yml
 
-	* general.yml
+		$ general.yml
 
  * Install the latest version of ruby on rails which should be 1.8.7 to 1.9.2,the following the steps makes install
 
-	$ wget ftp://ftp.ruby-lang.org//pub/ruby/1.9/ruby-1.9.2-p0.tar.gz
+		$ wget ftp://ftp.ruby-lang.org//pub/ruby/1.9/ruby-1.9.2-p0.tar.gz
 
-	$ tar -xvzf ruby-1.9.2-p0.tar.gz
+		$ tar -xvzf ruby-1.9.2-p0.tar.gz
 
-	$ cd ruby-1.9.2-p0/
+		$ cd ruby-1.9.2-p0/
 
-	$ ./configure --prefix=/usr/local/ruby
+		$ ./configure --prefix=/usr/local/ruby
 	
-	$ make && sudo make install
+		$ make && sudo make install
 
  * Need to export the PATH variable that path - /usr/local/ruby/bin, should look something like this:
 
-	$ PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/ruby/bin"
+		$ PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/ruby/bin"
 
-	$ GEM_HOME="path"
+		$ GEM_HOME="path"
 
  * Run the source command for the file /etc/environment to apply changes
 	
-	$ source /etc/environment
+		$ source /etc/environment
 
  * Now create a symbolic link for ruby and gem program
 
-	$ sudo ln -s /usr/local/ruby/bin/ruby /usr/local/bin/ruby
+		$ sudo ln -s /usr/local/ruby/bin/ruby /usr/local/bin/ruby
 	
-	$ sudo ln -s /usr/local/ruby/bin/gem /usr/bin/gem
+		$ sudo ln -s /usr/local/ruby/bin/gem /usr/bin/gem
 
  * Now install the required gem packages, including Rails 3
 
-	$ sudo gem install tzinfo builder memcache-client rack rack-test erubis mail text-format bundler thor i18n sqlite3-ruby
+		$ sudo gem install tzinfo builder memcache-client rack rack-test erubis mail text-format bundler thor i18n sqlite3-ruby
 	
- 	$ sudo gem install rack-mount --version=0.4.0
+ 		$ sudo gem install rack-mount --version=0.4.0
 
-	$ sudo gem install rails --version 3.0.0
+		$ sudo gem install rails --version 3.0.0
 
 
  * Start the web interface from the installation folder by using the command
 
-	$ script/rails server -e production -p "PORTNO"
+		$ script/rails server -e production -p "PORTNO"
     
  Note:`The configured the database name, user name, password in all config file should be as common`
     
