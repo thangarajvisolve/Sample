@@ -9,15 +9,18 @@ OVERVIEW
 Netspective Fluent consists of interfaces to retrieve data from connected devices through RS232, 
 Ethernet, USB, GSM, and other connection channels. 
 
-
 REQUIREMENTS
 ------------
 The requirements for compiling and running :
 
 * OpenSplice DDS v5.x  
+
 * BOOST v1.48(or higher)
+
 * GCC/G++ v4.1(or higher)
+
 * Log for c++ 1.0(or higher)
+
 * Websocketpp (WebSocket C++ Library)
 
 INSTALLATION STEPS
@@ -57,10 +60,10 @@ Boost libraries are intended to be widely used, and usable across a broad spectr
         $ ./bootstrap.sh
 	
 * Export the required environment variables with the appropriate path
-    		
-        $ export LD_LIBRARY_PATH=/usr/local/boost_1_48_0/stage/lib:
 
-        $ export CPLUS_INCLUDE_PATH=/usr/local/boost_1_48_0:
+        $  export LD_LIBRARY_PATH=/usr/local/boost_1_48_0/stage/lib:
+ 
+        $  export CPLUS_INCLUDE_PATH=/usr/local/boost_1_48_0:
 
 
 DEVELOPMENT LIBRARIES
@@ -69,31 +72,31 @@ DEVELOPMENT LIBRARIES
 * GCC is an integrated distribution of compilers for several major programming languages.
 
         $ yum install "Develoment Tools"
-
+      
+        
 LOG FOR C++
 -----------
+* Log4cpp is library of C++ classes for logging to files, syslog and other destinations.[Click here to download](http://sourceforge.net/projects/log4cpp/files/) for log4cpp libraries. Follow the steps given below to install Log4cpp
+      
 
-* Log4cpp is library of C++ classes for logging to files, syslog and other destinations.[Click here to download](http://sourceforge.net/projects/log4cpp/
-files/) for log4cpp libraries. Follow the steps given below to install Log4cpp
-		
-	$ tar -xvf log4cpp-1.0.x.tar.gz
-	
-	$ cd log4cpp-1.0.x
+        $ tar -xvf log4cpp-1.0.x.tar.gz
+      
+        $ cd log4cpp-1.0.x
+        
+        $ ./configure
+        
+        $ make
+       
+        $ make check
 
-	$ ./configure
-
-	$ make	
-
-	$ make check
-
-	$ make install
+        $ make install
 
 GRAYLOG2 INSTALLATION:
 ---------------------
 
 Graylog2 Server:
 
-* Download the latest version of graylog2 server from the following link.[Click here to download](https://github.com/Graylog2/graylog2-server/downloads)
+* Download the version of graylog2 server0.9.6 from the following link.[Click here to download](https://github.com/Graylog2/graylog2-server/downloads)
  
 * Extract the graylog2 server tar file using the command and change to the installation directory
 
@@ -102,100 +105,121 @@ Graylog2 Server:
         $ cd graylog2-server-0.9.6/
     
 * Create a copy graylog2.conf using the example configuration file.
+ 
 
-	$ cp graylog2.conf.example graylog2.conf
+        $ cp graylog2.conf.example graylog2.conf
    
-* Start the graylog2-server using given below commands.
+* Start the graylog2-server using given below commands
+
    
         $ java -jar graylog2-server.jar -f ./graylog2.conf
   
 Elastic Search 
 
-* Download elasticsearch recent version.[Click here to download](http://www.elasticsearch.org/download/) and unpack it, 
+* Download elasticsearch 0.18.6 version from the link [Click here to download](http://www.elasticsearch.org/download/) and unpack it, 
 
-	$ tar -xvf elasticsearch-0.18.6.tar.gz
-		
-	$ cd elasticsearch-0.18.6
+        $ tar -xvf elasticsearch-0.18.6.tar.gz
+		 
+        $ cd elasticsearch-0.18.6
 		
 * Create a data and log directory
 
-	$ mkdir /var/data/elasticsearch
+        $ mkdir /var/data/elasticsearch
 		
-	$ mkdir /var/log/elasticsearch
+        $ mkdir /var/log/elasticsearch
 
 * Configure basic elasticsearch values in the existing config/elasticsearch.yml [elasticsearch configurations details](http://www.elasticsearch.org/guide/reference/setup/configuration.html)
 
-	$ network.host: <ipaddress>
-		
-	$ path.logs: /var/log/elasticsearch
-
-	$ path.data: /var/data/elasticsearch
-
-	$ cluster.name: graylog2
-
+        network.host: <ipaddress>
+        
+        path.logs: /var/log/elasticsearch
+        
+        path.data: /var/data/elasticsearch
+        
+        cluster.name: graylog2 
+        
 * Download elasticsearch-servicewrapper into your elasticserach/bin installation directory and unpack it there,using the following commands from the terminal 
 
-	$ wget https://github.com/elasticsearch/elasticsearch-servicewrapper/zipball/master
-
-	$ mv master elasticsearch-servicewrapper.zip && unzip elasticsearch-servicewrapper.zip
+        $ wget https://github.com/elasticsearch/elasticsearch-servicewrapper/zipball/master
+ 
+        $ mv master elasticsearch-servicewrapper.zip && unzip elasticsearch-servicewrapper.zip
 	
-	$ mv elasticsearch-elasticsearch-servicewrapper-*/* . && rm -rf elasticsearch-elasticsearch-servicewrapper-*
+        $ mv elasticsearch-elasticsearch-servicewrapper-*/* . && rm -rf elasticsearch-elasticsearch-servicewrapper-*
 
 * Update the set.default.ES_HOME path in bin/service/elasticsearch.conf to elastic search installation directory.
 	
 * Start elasticsearch instance using the command
 
-	$ ./elasticsearch start 
+        $ ./elasticsearch start 
 
-* Elasticsearch instance started successfully the we can check it in the log files either in the same directory or default in /var/log/elasticsearch/graylog2.log.
+* Elasticsearch instance started successfully the we can check it in the log files either in the same directory or default in `/var/log/elasticsearch/graylog2.log`
  
 Note:`The configurations in elasticsearch.yml,graylog2.conf should be as common`.
  
 Graylog2-Web Interface:
 
- * Download the recent version of web interface from the link.[Click here to download](https://github.com/Graylog2/graylog2-web-interface/downloads)
+ * Download  version of graylog2-web interface 0.9.6 from the link.[Click here to download](https://github.com/Graylog2/graylog2-web-interface/downloads)
  
  * Extract the downloaded zip file using the following command abd change to the instaaltion directory
 
-	$ tar -xvf graylog2-webinterface-0.9.6.tar.gz.
+        $ tar -xvf graylog2-webinterface-0.9.6.tar.gz.
 		
-	$ cd graylog2-webinterface-0.9.6/
+        $ cd graylog2-webinterface-0.9.6/
  
  * Update config/indexer.yml with
- 
+
+      production
+      
+        url: http://0.0.0.0:0000/
+         
+        index_name: graylog2
+
  * Update config/mongoid.yml with
+
+       production:
+         
+         host: <ipaddress>
+      
+         port: <portno>
+       
+         username: db_username
+        
+         password: db_password
+        
+         database: db_name`
+
 
  * Install the latest version of ruby on rails which should be 1.9.2,follow the steps for installation by [clicking here]( http://torqueo.net/installing-ruby-192-and-rails-3) or using below steps shall make to install   
 
-	$ wget ftp://ftp.ruby-lang.org//pub/ruby/1.9/ruby-1.9.2-p0.tar.gz
+        $ wget ftp://ftp.ruby-lang.org//pub/ruby/1.9/ruby-1.9.2-p0.tar.gz
 
-	$ tar -xvf ruby-1.9.2-p0.tar.gz
+        $ tar -xvf ruby-1.9.2-p0.tar.gz
 
-	$ cd ruby-1.9.2-p0/
+        $ cd ruby-1.9.2-p0/
 
-	$ ./configure --prefix=/usr/local/ruby
+        $ ./configure --prefix=/usr/local/ruby
 	
-	$ make && sudo make install
+        $ make && sudo make install
 
  * Export the PATH and GEM_HOME enviornment variables as given below.
 
-	$ export PATH=/usr/local/ruby/bin:$PATH
+        $ export PATH=/usr/local/ruby/bin:$PATH
 
-	$ export GEM_HOME=/usr/local/ruby
+        $ export GEM_HOME=/usr/local/ruby
 
  * Now install the required gem packages, including Rails 3
 
-	$ sudo gem install tzinfo builder memcache-client rack rack-test erubis mail text-format bundler thor i18n sqlite3-ruby
+        $ sudo gem install tzinfo builder memcache-client rack rack-test erubis mail text-format bundler thor i18n sqlite3-ruby
 	
-	$ sudo gem install rack-mount --version=0.4.0
+        $ sudo gem install rack-mount --version=0.4.0
 
-	$ sudo gem install rails --version 3.0.0
+        $ sudo gem install rails --version 3.0.0
 
  * Start the web interface from the installation folder by using the command
 
-	$ cd <WEB_INTERFACE_INSTALLTION_PATH>
+        $ cd <WEB_INTERFACE_INSTALLTION_PATH>
 	
-	$ script/rails server -e production -p <PORTNO>
+        $ script/rails server -e production -p <PORTNO>
 	
  Note:`The configured database name,user name,password, ipaddress,port numbers of MongoDB in graylog2.conf,mongoid.yml should be as common`
     
@@ -213,11 +237,11 @@ COMPILATION STEPS
         $ make
 
 * After successful completion of compilation, binary files will be created in following directory.
-                    
+
         $ cd ../../bin/
 
 * Run the following command to clean the build files.
-        
+
         $ make clean
 
 
