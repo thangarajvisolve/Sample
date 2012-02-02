@@ -92,9 +92,7 @@ GRAYLOG2 INSTALLATION:
 
 Graylog2 Server:
 
-* Download the latest version of graylog2 server from the following link
-  
-    	$ http://www.graylog2.org/download
+* Download the latest version of graylog2 server from the following link.[Click here to downlaod]( http://www.graylog2.org/download
  
 * Extract the graylog2 server tar file using the command and change to the installation directory
 
@@ -121,6 +119,7 @@ Elastic Search
 * Create a data and log directory
 
 		$ mkdir /var/data/elasticsearch
+		
 		$ mkdir /var/log/elasticsearch
 
 * Configure basic elasticsearch values in the existing config/elasticsearch.yml
@@ -163,7 +162,7 @@ Graylog2-Web Interface:
 
 		$ general.yml
 
- * Install the latest version of ruby on rails which should be 1.8.7 to 1.9.2,follow the steps by [Clicking here]( http://torqueo.net/installing-ruby-192-and-rails-3) or using below steps shall make to install   
+ * Install the latest version of ruby on rails which should be 1.9.2,follow the steps by for installation.[Clicking here]( http://torqueo.net/installing-ruby-192-and-rails-3) or using below steps shall make to install   
 
 		$ wget ftp://ftp.ruby-lang.org//pub/ruby/1.9/ruby-1.9.2-p0.tar.gz
 
@@ -175,7 +174,7 @@ Graylog2-Web Interface:
 	
 		$ make && sudo make install
 
- * Need to export the PATH variable that path - /usr/local/ruby/bin, should look something like this:
+ * Export the PATH variable that path - /usr/local/ruby/bin, should look something like this:
 
 		$ PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/ruby/bin"
 
