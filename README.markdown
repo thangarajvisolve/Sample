@@ -181,9 +181,7 @@ Graylog2-Web Interface:
 
 		$ general.yml
 
- * Install the latest version of ruby on rails which should be 1.8.7 to 1.9.2,follow  the steps [Click here ](
-
- http://torqueo.net/installing-ruby-192-and-rails-3) or using below staps shall make to install   
+ * Install the latest version of ruby on rails which should be 1.8.7 to 1.9.2,follow  the steps [Click here ]( http://torqueo.net/installing-ruby-192-and-rails-3) or using below staps shall make to install   
 
 		$ wget ftp://ftp.ruby-lang.org//pub/ruby/1.9/ruby-1.9.2-p0.tar.gz
 
