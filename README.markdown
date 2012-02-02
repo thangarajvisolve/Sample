@@ -147,9 +147,9 @@ Elastic Search
 		$ ./elasticsearch start 
 
 * Elasticsearch instance started successfully the we can check it in the log files either in the same directory or default in /var/log/elasticsearch/graylog2.log.
-
-Note:`The configured the database name, user name, password in all config file should be as common`
-
+ 
+ Note:`The configurations in elasticsearch.yml,graylog2.conf should be as common`.
+ 
 Graylog2-Web Interface:
 
  * Download the recent version of web interface from the link.[Click here to download](https://github.com/Graylog2/graylog2-web-interface/downloads)
@@ -178,7 +178,8 @@ Graylog2-Web Interface:
 
 		$ PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/ruby/bin"
 
-		$ GEM_HOME="path"
+		$ GEM_HOME="/../../ruby-1.9.2-p0
+"
 
  * Run the source command for the file /etc/environment to apply changes
 	
@@ -203,7 +204,7 @@ Graylog2-Web Interface:
 
 		$ script/rails server -e production -p "PORTNO"
     
- Note:`The configured database name,user name,password in all config file should be as common`
+ Note:`The configured database name,user name,password in graylog2.conf,mongoid.yml,indexer.yml should be as common`
     
 COMPILATION STEPS
 -----------------
