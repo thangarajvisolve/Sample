@@ -1,29 +1,31 @@
 ############################################################################################
 #                                                                                          #
-#                 Netspective Fluent M2M Platform                                          #
+#                <h2> Netspective Fluent M2M Platform</h2>                                 #
 #                                                                                          #
 ############################################################################################
 
-OVERVIEW
-========
-Netspective Fluent consists of interfaces to retrieve data from connected devices through RS232, 
-Ethernet, USB, GSM, and other connection channels. 
+<h3>OVERVIEW</h3>
+----------------
+  
+  Netspective Fluent consists of interfaces to retrieve data from connected devices through RS232, Ethernet, USB, GSM, and other connection channels. 
 
-
-REQUIREMENTS
-------------
+<h3>REQUIREMENTS</h3>
+---------------------
 The requirements for compiling and running :
 
 * OpenSplice DDS v5.x  
+
 * BOOST v1.40 (or higher)
+
 * GCC/G++ v4.1 (or higher)
+
 * Log for c++ 1.0 (or higher)
 
-INSTALLATION STEPS
-------------------
+<h3>INSTALLATION STEPS</h3>
+----------------------------
 
-OPENSPLICEDDS
--------------
+<h4>OPENSPLICEDDS</h4>
+
 * OpenSplice DDS is one of several open source implementation of the OMG Data Distribution Service for Real-Time Systems (DDS) standard.
   
 * OpenJDK is pre-requisite for OpenSpliceDDS. Install latest version of OpenJDK.
@@ -34,17 +36,16 @@ OPENSPLICEDDS
     
 * Extract the downloaded tar file with following command, after extracted the tar file you could find the HDE folder.
 
-      $ tar -xvf OpenSpliceDDSV5.4.1-x86_64.linux2.6-gcc412-gnuc25-HDE.tar.gz
+        $ tar -xvf OpenSpliceDDSV5.4.1-x86_64.linux2.6-gcc412-gnuc25-HDE.tar.gz
       
 * Use the given commands to setup the environment and start DDS service
 
-      $ source release.com
+        $ source release.com
       
     	$ ospl start
 
       
-BOOST LIBRARY
-------------
+<h4>BOOST LIBRARY</h4>
 
 * Boost libraries are intended to be widely used, and usable across a broad spectrum of applications. 
 
@@ -54,14 +55,14 @@ BOOST LIBRARY
       
           libboost-signals-dev libboost-test-dev libboost-thread-dev
 
-DEVELOPMENT LIBRARIES
----------------------
+<h4>DEVELOPMENT LIBRARIES</h4>
+
 * GCC is an integrated distribution of compilers for several major programming languages.
 
         $ yum install build-essential
 
-LOG FOR C++
------------
+<h4>LOG FOR C++:</h4>
+
 * Log4cpp is library of C++ classes for logging to files, syslog and other destinations.[Click here to download](http://sourceforge.net/projects/log4cpp/files/) for log4cpp libraries. Follow the steps given below to install Log4cpp
 
         $ tar -xvf log4cpp-1.0.x.tar.gz
@@ -77,10 +78,9 @@ LOG FOR C++
         $ make install
         
 
-GRAYLOG2 INSTALLATION:
----------------------
-
-Graylog2 Server:
+<h4>GRAYLOG2 INSTALLATION:</h4>
+-------------------------
+<h6>Graylog2 Server:</h6>
 
 * Download the version of graylog2 server0.9.6 from the following link.[Click here to download](https://github.com/Graylog2/graylog2-server/downloads)
  
@@ -98,7 +98,7 @@ Graylog2 Server:
 
         $ java -jar graylog2-server.jar -f ./graylog2.conf
   
-Elastic Search 
+<h6>Elastic Search:</h6> 
 
 * Download elasticsearch 0.18.6 version from the link [Click here to download](http://www.elasticsearch.org/download/) and unpack it, 
 
@@ -140,7 +140,7 @@ Elastic Search
  
 Note:`The configurations in elasticsearch.yml,graylog2.conf should be as common`.
  
-Graylog2-Web Interface:
+<h6>Graylog2-Web Interface:</h6>
 
  * Download  version of graylog2-web interface 0.9.6 from the link.[Click here to download](https://github.com/Graylog2/graylog2-web-interface/downloads)
  
@@ -207,9 +207,8 @@ Graylog2-Web Interface:
 	
  Note:`The configured database name,user name,password, ipaddress,port numbers of MongoDB in graylog2.conf,mongoid.yml should be as common`
     
-COMPILATION STEPS
------------------
-
+<h3>COMPILATION STEPS</h3>
+------------------------
 * Set OpenSliceDDS environment variables from the Opensplice installed directory as shown below.
 
         $ source /../../HDE/x86.linux2.6/release.com
@@ -228,35 +227,8 @@ COMPILATION STEPS
 
         $ make clean
 
-
-
-COMPILATION STEPS
------------------
-
-This package contains the following file: ../support/build/Makefile
-
-* To build, do the following steps 
- 
-    1.Include the OpenSliceDDS environment variables from the Opensplice installed directory as ahown below.
-
-        $ source /../../HDE/x86.linux2.6/release.com
-
-* Run the makefile
-
-        $ cd support/build
-
-        $ make
-
-* This will be created in following directory and to clean all the generated files run the command .
-                    
-        $ ../../bin/
-        
-        $ make clean
-
-
-STEPS TO RUN THE APPLICATIONS 
-=============================
-
+<h3>STEPS TO RUN THE APPLICATIONS </h3>
+--------------------------------------------
 **1**. Set OpenSpliceDDS environment using the following command
 
         $ source /usr/local/HDE/x86.linux2.6/release.com
@@ -273,13 +245,13 @@ STEPS TO RUN THE APPLICATIONS
 
 randomly corresponding to the publisher and send it to the publisher. The request can be from any of the three publishers listed below,
      
-**BLOOD PRESSURE:**
+<h5>BLOOD PRESSURE:</h5>
 
 **3.1.** Start the `blood pressure publisher` shall be started by passing the various options suffix to the command .
 
       $. /bp-pub --
 
-Available options  are:
+<h6>Available options  are:</h6>
 
         --help                   Produce help message
 
@@ -312,7 +284,7 @@ NOTE : `The category name arguments passed to the application needs to be config
 
         $./bp-pub.sh --
 
-Available Options are:
+<h6>Available options  are:</h6>
 
         --domain        Device Domain
         
@@ -331,7 +303,7 @@ NOTE : `The  arguments passed to the application needs to be configured in the l
 
     $ ./bp-sub-echo --
 
-Available options are:
+<h6>Available options  are:</h6>
 
         --help                  Produce help message
 
@@ -350,7 +322,6 @@ Example:
          $ /bp-sub-echo --domain blood --device-id BP_LAB3 --log-info blood.info --log-data blood.echo --log4cpp-conf ../src/c++/production/conf/
 
             simulation_log_bp_sub.conf         
-
       
   * Once the blood pressure subscriber is started it will retrieve data from the Topic. Subscriber uses ContentFilterTopic to retrieve messages based on the Device ID from a single topic.
   
@@ -360,7 +331,7 @@ Example:
 
         $ ./bp-sub-alarm 
 
-Available options are:
+<h6>Available options  are:</h6>
   
         --help                    Produce help message
 
@@ -397,13 +368,13 @@ Example :
 
 arguments.
 
-NOTE : `The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.`
+NOTE: `The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.`
 
 **3.4**. Start the `blood pressure persists` in the other terminal by passing the various options suffix to the command. 
 
       $./bp-sub-persist 
 
-Available options are:
+<h6>Available options  are:</h6>
 
         --help                Produce help message
 
@@ -429,15 +400,15 @@ Example
 
   * Once the blood pressure persistence is started it  will update the data in to the data base and displays the data in the log file.
 
-NOTE :` The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.`
+NOTE :`The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.`
 
-**Common Webserver:**
+<h5>Common Webserver:</h5>
   
   * Start the `Common Webserver`in the terminal by passing few options suffix to the command ,it can be used as common for all the subsrcibers-webserver
 
         $./web-listener
 
-Available Options are:
+<h6>Available options  are:</h6>
         
         --web server name      Webserver Name
         
@@ -456,13 +427,13 @@ Available Options are:
 NOTE: `Domain name and device id are missed in the URL then the entire device data will be displayed.`
 
               
-**PULSE OXIMETER:**
-
+<h5>PULSE OXIMETER:</h5>
+------------------------
 **4.1.** `Pulse oximeter publisher` shall be started by passing the various options suffix to the command .
 
         $./pulseox-pub 
 
-Available options are:
+<h6>Available options  are:</h6>
 
         --help                Produce help message
 
@@ -492,7 +463,7 @@ NOTE :` The category name arguments passed to the application needs to be config
 
       ./pulseox-pub.sh --
 
-Available Options are:
+<h6>Available options  are:</h6>
 
         --domain        Device Domain
         
@@ -511,7 +482,7 @@ NOTE : `The arguments passed to the application needs to be configured in the lo
 
       $./pulseox-sub-echo -
 
-Available options are:
+<h6>Available options  are:</h6>
 
       --help                Produce help message
 
@@ -539,7 +510,7 @@ NOTE : `The category name arguments passed to the application needs to be config
 
         $./pulseox-sub-alarm -
 
-Available options are:
+<h6>Available options  are:</h6>
 
         --help               Produce help message
 
@@ -573,7 +544,7 @@ NOTE : `The category name arguments passed to the application needs to be config
 
         $./pulseox-sub-persist -- 
 
-Available options are:
+<h6>Available options  are:</h6>
   
         --help               Produce help message
   
@@ -601,13 +572,13 @@ Example:
 
 NOTE : `The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.`
 
-**TEMPERATURE MONITOR:**
-
+<h5>TEMPERATURE MONITOR:</h5>
+----------------------------
 **5.1.** Temperature monitor publisher shall be started by passing the various options suffix to the command.
 
     $./tempmonitor-pub --
 
-Available options are:
+<h6>Available options are:</h6>
   
         --help                Produce help message
 
@@ -639,7 +610,7 @@ NOTE : `The category name arguments passed to the application needs to be config
 
       $./tempmonitor-pub.sh --
 
-Available options are:
+<h6>Available options are:</h6>
 
         --domain        Device Domain
         
@@ -661,7 +632,7 @@ EXAMPLE:
 
           $./tempmerature-sub-echo
 
-Available options are:
+<h6>Available options  are:</h6>
 
         --help                  Produce help message
 
@@ -687,7 +658,7 @@ NOTE :  `The category name arguments passed to the application needs to be confi
 
         $./tempmerature-sub-alarm
 
-Available options are:
+<h6>Available options  are:</h6>
 
         --help		              Produce help message
 
@@ -721,7 +692,7 @@ NOTE : `The category name arguments passed to the application needs to be config
 
          $./temperature-sub-persist 
 
-Available options are:
+<h6>Available options  are:</h6>
 
         --help                Produce help message
 
@@ -749,13 +720,14 @@ Example:
 
 NOTE : `The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.`
 
-** ECG **
+<h5> ECG </h5>
+---------------
 
 **6.1**  Ecg publisher shall be started by passing the various options suffix to the command.
 
     $./ecg-pub --
 
-Available options are:
+<h6>Available options  are:</h6>
   
         --help                Produce help message
 
@@ -785,7 +757,7 @@ NOTE : `The category name arguments passed to the application needs to be config
 
           $./ecg-sub-echo
 
-Available options are:
+<h6>Available options  are:</h6>
 
         --help                  Produce help message
 
@@ -807,8 +779,8 @@ Example:
 
 NOTE :  `The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.`
 
-STEPS TO RUN THE DISTRIBUTED APPLICATION:
-========================================
+<h3>STEPS TO RUN THE DISTRIBUTED APPLICATION:</h3>
+------------------------------------------------
 
 **1.** From the installation location of OpenspliceDDS, we need to change the few confiuration in the ospl config file located in,
 
