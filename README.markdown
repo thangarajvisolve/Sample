@@ -53,11 +53,11 @@ Boost libraries are intended to be widely used, and usable across a broad spectr
 
       	$ tar -xvf boost-x.x.x.gz
 
-* Change to installation directory 
+* Change to installation directory and run the following command. Follow the instructions until the installation was successful.
 
-  	$./bootstrap.sh and follow the instructions to until it completes successfully
+	$ ./bootstrap.sh
 	
-* Need to export the PATH variable that path
+* Export the required environment variables with the appropriate path
     		
 	$ export LD_LIBRARY_PATH=/usr/local/boost_1_48_0/stage/lib:
 
@@ -66,14 +66,16 @@ Boost libraries are intended to be widely used, and usable across a broad spectr
 
 DEVELOPMENT LIBRARIES
 ---------------------
+
 GCC is an integrated distribution of compilers for several major programming languages.
 
 	$ yum install "Develoment Tools"
 
 LOG FOR C++
 -----------
+
 Log4cpp is library of C++ classes for logging to files, syslog and other destinations.[Click here to download](http://sourceforge.net/projects/log4cpp/
-files/) for log4cpp libraries.
+files/) for log4cpp libraries. Follow the steps given below to install Log4cpp
 
         $ ./configure
 
@@ -100,37 +102,28 @@ Graylog2 Server:
      
         $ cd graylog2-server-x.x.x/
     
-* Configure the graylog2.conf file by copying it into /etc/
-   
-* Starting the graylog2-server 
-   
-* Change into the bin/ folder in graylog2-server installation and start the server by using the graylog2-ctl script:
+* Create a copy graylog2.conf using the example configuration file.
 
-        $ cd bin/
-        
-        $ ./graylog2ctl start
-  
-* We could find a log in nohup.out in the same directory.
-  
-* Start without control script
-    
-	$ java -jar graylog2-server.jar
-        
-* Start with debug parameter to get debug output
-  
-        $ java -jar graylog2-server.jar --debug
-  
-* Define a config file other than /etc/graylog2.conf
-  
-        $ java -jar graylog2-server.jar -f /../../config.conf
+	$ cp graylog2.conf.example graylog2.conf
+   
+* Start the graylog2-server using given below commands.
+   
+        $ java -jar graylog2-server.jar -f ./graylog2.conf
   
 Elastic Search 
 
 * Download elasticsearch recent version.[Click here to download](http://www.elasticsearch.org/download/) and unpack it, 
 
 		$ tar xzfv elasticsearch-0.18.6.tar.gz
+		
+		$ cd elasticsearch-0.18.6
+		
+* Create a data and log directory
 
-* Configure basic elasticsearch values in the existing graylog.conf or any other alternative file
+		$ mkdir /var/data/elasticsearch
+		$ mkdir /var/log/elasticsearch
+
+* Configure basic elasticsearch values in the existing config/elasticsearch.yml
 
 		$ network.host: 0.0.0.0
 
@@ -140,33 +133,23 @@ Elastic Search
 
 		$ cluster.name: graylog2
 
-* Download elasticsearch-servicewrapper using the following link from the terminal  
+* Download elasticsearch-servicewrapper using the following link from the terminal from the same directory where elastic search was installed. 
 
 		$ wget https://github.com/elasticsearch/elasticsearch-servicewrapper/zipball/master
 
 		$ mv master elasticsearch-servicewrapper.zip && unzip elasticsearch-servicewrapper.zip
 	
-		$ mv elasticsearch-elasticsearch-servicewrapper-*/* . && rm -rf elasticsearch-elasticsearch-servicewrapper-*
+		$ mv elasticsearch-elasticsearch-servicewrapper-*/* bin/ && rm -rf elasticsearch-elasticsearch-servicewrapper-*
 
-* Configure the elasticsearch.yml in the config directory 
-
-		$ Create the directory as /path/data/elasticsearch for data 
+* Update the set.default.ES_HOME path in bin/service/elasticsearch.conf to elastic search installation directory.
 	
-		$ Create the directory as /path/logs/elasticsearch for logs with the file 
-
-* Configure elasticsearch.conf in the service directory
-
-		$ Alter the home path to the elastic search installation directory
-	
-* Start elasticsearch instance using the command 
+* Start elasticsearch instance using the command
 
 		$ ./elasticsearch start 
 
-* Elasticsearch instance started successfully the we can check it in the log files either  in the same directory or default in  /var/log/elasticsearch/
+* Elasticsearch instance started successfully the we can check it in the log files either in the same directory or default in /var/log/elasticsearch/graylog2.log.
 
-graylog2.log.
-
- Note:`The configured the database name, user name, password in all config file should be as common`
+Note:`The configured the database name, user name, password in all config file should be as common`
 
 Graylog2-Web Interface:
 
