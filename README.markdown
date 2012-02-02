@@ -96,9 +96,9 @@ Graylog2 Server:
  
 * Extract the graylog2 server tar file using the command and change to the installation directory
 
-        $ tar -xvf graylog2-server-x.x.x
+        $ tar -xvf graylog2-server-0.9.6
      
-        $ cd graylog2-server-x.x.x/
+        $ cd graylog2-server-0.9.6/
     
 * Create a copy graylog2.conf using the example configuration file.
 
@@ -166,7 +166,7 @@ Graylog2-Web Interface:
 
 		$ wget ftp://ftp.ruby-lang.org//pub/ruby/1.9/ruby-1.9.2-p0.tar.gz
 
-		$ tar -xvzf ruby-1.9.2-p0.tar.gz
+		$ tar -xvf ruby-1.9.2-p0.tar.gz
 
 		$ cd ruby-1.9.2-p0/
 
