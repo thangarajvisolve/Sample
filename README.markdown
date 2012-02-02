@@ -92,7 +92,7 @@ GRAYLOG2 INSTALLATION:
 
 Graylog2 Server:
 
-* Download the latest version of graylog2 server from the following link.[Click here to downlaod]( http://www.graylog2.org/download
+* Download the latest version of graylog2 server from the following link.[Click here to downlaod](http://www.graylog2.org/download
  
 * Extract the graylog2 server tar file using the command and change to the installation directory
 
