@@ -50,13 +50,13 @@ BOOST LIBRARY
 
 Boost libraries are intended to be widely useful, and usable across a broad spectrum of applications. 
 
-Download the recent version of boost library by [clicking here].(http://www.boost.org/users/download/)
+* Download the recent version of boost library  [click here to download](http://www.boost.org/users/download/)
 
-Extract  the boost.library tar file 
+* Extract  the boost.library tar file 
 
       	$ tar -xvf boost-x.x.x.gz
 
-Change to installation directory 
+* Change to installation directory 
 
   	$./bootstrap.sh and follow the instructions to until it completes successfully
 	
@@ -169,8 +169,8 @@ graylog2.log.
 
 Graylog2-Web Interface:
 
- * Download the recent version of web interface from the link [click here to download](http://www.graylog2.org/download)
-
+ * Download the recent version of web interface from the link [click here to download](https://github.com/Graylog2/graylog2-web-interface/downloads
+ 
  * Configure new web-interface (copy old configs, adapt new parameters, create new indexer.yml file with correct elasticsearch settings),
 
 	* indexer.yml
