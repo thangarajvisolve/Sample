@@ -61,7 +61,7 @@ Boost libraries are intended to be widely used, and usable across a broad spectr
     		
 	$ export LD_LIBRARY_PATH=/usr/local/boost_1_48_0/stage/lib:
 
-	$ export CPLUS_INCLUDE_PATH=/usr/local/boost_1_48_0:*/
+	$ export CPLUS_INCLUDE_PATH=/usr/local/boost_1_48_0:
 
 
 DEVELOPMENT LIBRARIES
@@ -132,7 +132,7 @@ Elastic Search
 
 		$ cluster.name: graylog2
 
-* Download elasticsearch-servicewrapper into your elasticserach/bin installation directory and unpack it there,using the following link from the terminal from the same directory where elastic search was installed. 
+* Download elasticsearch-servicewrapper into your elasticserach/bin installation directory and unpack it there,using the following commands from the terminal 
 
 		$ wget https://github.com/elasticsearch/elasticsearch-servicewrapper/zipball/master
 
