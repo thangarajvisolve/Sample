@@ -87,49 +87,49 @@ GRAYLOG2 INSTALLATION:
 ---------------------
 Graylog2 Server:
 
-**1** Graylog2 server and web interface shall be installed from the following steps
+* Graylog2 server and web interface shall be installed from the following steps
   
-  Download the latest version of graylog2 server from the following link
+* Download the latest version of graylog2 server from the following link
   
     	$http://www.graylog2.org/download
-  
-  Extract the graylog2 server tar file using the command and change to the installation directory
+ 
+* Extract the graylog2 server tar file using the command and change to the installation directory
 
         $ tar -xvf graylog2-server-x.x.x
      
         $ cd graylog2-server-x.x.x/
     
-  Configure the graylog2.conf file by copying it into  /etc/
+* Configure the graylog2.conf file by copying it into  /etc/
    
-  Starting the graylog2-server 
+* Starting the graylog2-server 
    
-  Change into the bin/ folder of your graylog2-server installation and start the server by using the graylog2-ctl script:
+* Change into the bin/ folder of your graylog2-server installation and start the server by using the graylog2-ctl script:
 
         $ cd bin/
         
         $ ./graylog2ctl start
   
-  Could find a log in nohup.out in the same directory.
+* Could find a log in nohup.out in the same directory.
   
-  Start without control script
+* Start without control script
     
         $ java -jar graylog2-server.jar
         
-  Start with debug parameter to get debug output
+* Start with debug parameter to get debug output
   
         $ java -jar graylog2-server.jar --debug
   
-  Define a config file other than /etc/graylog2.conf
+* Define a config file other than /etc/graylog2.conf
   
         $ java -jar graylog2-server.jar -f /../../config.conf
   
 Elastic Search 
 
- Download elasticsearch, most recent version [from here](http://www.elasticsearch.org/download/) and unpack it, 
+* Download elasticsearch, most recent version [from here](http://www.elasticsearch.org/download/) and unpack it, 
 
 	$ tar xzfv elasticsearch-0.18.6.tar.gz
 
- Configure basic elasticsearch values in the existing graylog.conf or any other alternative file
+* Configure basic elasticsearch values in the existing graylog.conf or any other alternative file
 
 	$ network.host: 0.0.0.0
 
@@ -139,7 +139,7 @@ Elastic Search
 
 	$ cluster.name: graylog2
 
- Download elasticsearch-servicewrapper using the following link from the terminal  
+* Download elasticsearch-servicewrapper using the following link from the terminal  
 
 	$ wget https://github.com/elasticsearch/elasticsearch-servicewrapper/zipball/master
 
@@ -147,21 +147,21 @@ Elastic Search
 	
 	$ mv elasticsearch-elasticsearch-servicewrapper-*/* . && rm -rf elasticsearch-elasticsearch-servicewrapper-*
 
- Configure the elasticsearch.yml in the config directory 
+* Configure the elasticsearch.yml in the config directory 
 
-	* Create the directory as /path/data/elasticsearch for data 
+	$ Create the directory as /path/data/elasticsearch for data 
 	
-	* Create the directory as /path/logs/elasticsearch for logs with the file 
+	$ Create the directory as /path/logs/elasticsearch for logs with the file 
 
- Configure elasticsearch.conf in the service directory
+* Configure elasticsearch.conf in the service directory
 
-	* Alter the home path to the elastic search installation directory
+	$ Alter the home path to the elastic search installation directory
 	
- Start elasticsearch instance using the command 
+* Start elasticsearch instance using the command 
 
 	$ ./elasticsearch start 
 
- Elasticsearch instance started successfully the we can check it in the log files either  in the same directory or default in  /var/log/elasticsearch/
+* Elasticsearch instance started successfully the we can check it in the log files either  in the same directory or default in  /var/log/elasticsearch/
 
 graylog2.log.
 
@@ -169,11 +169,9 @@ graylog2.log.
 
 Graylog2-Web Interface:
 
- Download the recent version of web interface from the following link
+ * Download the recent version of web interface from the link [click here to download](http://www.graylog2.org/download)
 
-	* http://www.graylog2.org/download
-
- Configure new web-interface (copy old configs, adapt new parameters, create new indexer.yml file with correct elasticsearch settings),
+ * Configure new web-interface (copy old configs, adapt new parameters, create new indexer.yml file with correct elasticsearch settings),
 
 	* indexer.yml
 
@@ -181,7 +179,7 @@ Graylog2-Web Interface:
 
 	* general.yml
 
- Install the latest version of ruby on rails which should be 1.8.7 to 1.9.2,the following the steps makes install
+ * Install the latest version of ruby on rails which should be 1.8.7 to 1.9.2,the following the steps makes install
 
 	$ wget ftp://ftp.ruby-lang.org//pub/ruby/1.9/ruby-1.9.2-p0.tar.gz
 
@@ -193,32 +191,32 @@ Graylog2-Web Interface:
 	
 	$ make && sudo make install
 
- Need to export the PATH variable that path - /usr/local/ruby/bin, should look something like this:
+ * Need to export the PATH variable that path - /usr/local/ruby/bin, should look something like this:
 
 	$ PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/ruby/bin"
 
 	$ GEM_HOME="path"
 
- Run the source command for the file /etc/environment to apply changes
+ * Run the source command for the file /etc/environment to apply changes
 	
 	$ source /etc/environment
 
- Now create a symbolic link for ruby and gem program
+ * Now create a symbolic link for ruby and gem program
 
 	$ sudo ln -s /usr/local/ruby/bin/ruby /usr/local/bin/ruby
 	
 	$ sudo ln -s /usr/local/ruby/bin/gem /usr/bin/gem
 
- Now install the required gem packages, including Rails 3
+ * Now install the required gem packages, including Rails 3
 
-	$sudo gem install tzinfo builder memcache-client rack rack-test erubis mail text-format bundler thor i18n sqlite3-ruby
+	$ sudo gem install tzinfo builder memcache-client rack rack-test erubis mail text-format bundler thor i18n sqlite3-ruby
 	
  	$ sudo gem install rack-mount --version=0.4.0
 
 	$ sudo gem install rails --version 3.0.0
 
 
- Start the web interface from the installation folder by using the command
+ * Start the web interface from the installation folder by using the command
 
 	$ script/rails server -e production -p "PORTNO"
     
