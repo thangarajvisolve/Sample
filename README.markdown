@@ -51,7 +51,7 @@ Boost libraries are intended to be widely used, and usable across a broad spectr
 
 * Extract the boost.library tar file 
 
-      	$ tar -xvf boost/boost_1_48_0.tar.gz
+      	$ tar -xvf boost_1_48_0.tar.gz
 
 * Change to installation directory and run the following command. Follow the instructions until the installation was successful.
 
