@@ -30,7 +30,7 @@ OPENSPLICEDDS
   
 * OpenJDK is pre-requisite for OpenSpliceDDS. Install latest version of OpenJDK.
 
-* Download the OpenSplice  version of `OpenSpliceDDSV5.4.1-x86_64.linux2.6-gcc412-gnuc25-HDE.tar.gz` from the following link.[Click Here to Download](http://www.prismtech.com/opensplice/opensplice-dds-community/software-downloads)
+* Download the OpenSplice  version of `OpenSpliceDDSV5.4.1-x86_64.linux2.6-gcc412-gnuc25-HDE.tar.gz` from the following link.[Click here to download](http://www.prismtech.com/opensplice/opensplice-dds-community/software-downloads)
         
 * Extract the downloaded tar file with following command, after extracted the tar file you could find the HDE folder and configure the release.com with installation directory.
 
@@ -92,7 +92,7 @@ GRAYLOG2 INSTALLATION:
 
 Graylog2 Server:
 
-* Download the latest version of graylog2 server from the following link.[Click here to downlaod](http://www.graylog2.org/download
+* Download the latest version of graylog2 server from the following link.[Click here to download](https://github.com/Graylog2/graylog2-server/downloads)
  
 * Extract the graylog2 server tar file using the command and change to the installation directory
 
