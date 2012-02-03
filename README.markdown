@@ -494,15 +494,15 @@ Example
 
 <h6>Common Webserver:</h6>
 
-  * Start the **Common Webserver**in the terminal by passing few options suffix to the command ,it can be used as common for all the subsrcibers-webserver
+* Start the **Common Webserver**in the terminal by passing few options suffix to the command ,it can be used as common for all the subsrcibers-webserver
 
-       $ ./web-listener
+        $ ./web-listener
 
 Available Options are:
         
-        --web server name      Webserver Name
+         --web server name      Webserver Name
         
-        --port_no              Port Number
+         --port_no              Port Number
         
   Example:
       
@@ -658,7 +658,7 @@ Example:
 
 **5.1.** Temperature monitor publisher shall be started by passing the various options suffix to the command.
 
-       $ ./tempmonitor-pub --
+       $ ./temperature-pub --
 
 Available options are:
   
@@ -680,7 +680,7 @@ Available options are:
 
 Example :
 
-       $ ./tempmonitor-pub --data-gen-ip 127.0.0.1 --data-gen-port 5000 --domain temp --device-id TEMP_LAB3 --log-info temp.info --log-data temp.data --log4cpp-conf ../src/c++/production/conf/simulation_log_temp.conf/simulation_log_temp.conf
+       $ ./temperature-pub --data-gen-ip 127.0.0.1 --data-gen-port 5000 --domain temp --device-id TEMP_LAB3 --log-info temp.info --log-data temp.data --log4cpp-conf ../src/c++/production/conf/simulation_log_temp.conf/simulation_log_temp.conf
 
   * Once the publisher binds with the data generator and send a command, it receives data from data-generator and displays the data in the log files.
 
