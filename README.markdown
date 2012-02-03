@@ -127,6 +127,7 @@ Boost libraries are intended to be widely used, and usable across a broad spectr
 * Run the following command to make sure, mongoDB libraries were built properly.
 
         $ cd mongo/client
+        
         $ g++ simple_client_demo.cpp -lmongoclient -lboost_thread-mt -lboost_filesystem -lboost_program_options
         
 <h4>SYSLOG INSTALLATION:</h4>
@@ -143,7 +144,7 @@ Syslog supported by a wide variety of devices and receivers across multiple plat
 
          @@ 0.0.0.0:514
  
-* Commands used to restart the syslog are given below
+* Command used to restart the syslog are given below
 
         $ /etc/init.d/syslog restart
                          
