@@ -488,30 +488,6 @@ Example
 
 **NOTE : The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.**
 
-<h6>Common Webserver:</h6>
-
-* Start the **Common Webserver**in the terminal by passing few options suffix to the command ,it can be used as common for all the subsrcibers-webserver
-
-        $ ./web-listener
-
-Available Options are:
-        
-         --web server name      Webserver Name
-        
-         --port_no              Port Number
-        
-  Example:
-      
-       $ ./web-listener netspective-webserver.com 9003
-        
-  * Once the subscriber starts as webserver the data about  domain and device  will be recieved on the web browser.
-  
-    The web browser can be access data through the following URL 
-      
-      **http://netspective-webserver.com/medigraph/index.php?domain_id=DOMAINID&device_id=DEVICEID**
-
-**NOTE:Domain name and device id are missed in the URL then the entire device data will be displayed.**
-              
 <h6>PULSE OXIMETER:</h6>
 
 **4.1. Pulse oximeter publisher** shall be started by passing the various options suffix to the command .
