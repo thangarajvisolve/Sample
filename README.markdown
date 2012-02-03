@@ -31,7 +31,7 @@ The requirements for compiling and running :
 
 OpenSplice DDS is one of several open source implementation of the OMG Data Distribution Service for Real-Time Systems (DDS) standard.
   
-* OpenJDK is pre-requisite for OpenSpliceDDS. Install latest version of OpenJDK.
+* OpenJDK is pre-requisite for OpenSpliceDDS. Install latest version of OpenJDK (JDK 1.5 minimum required).
 
 * Download the OpenSplice  version of `OpenSpliceDDSV5.4.1-x86_64.linux2.6-gcc412-gnuc25-HDE.tar.gz` from the following link.[Click here to download](http://www.prismtech.com/opensplice/opensplice-dds-community/software-downloads)
         
@@ -76,7 +76,6 @@ Boost libraries are intended to be widely used, and usable across a broad spectr
 <h6>LOG FOR C++</h6>
 
 * Log4cpp is library of C++ classes for logging to files, syslog and other destinations.[Click here to download](http://sourceforge.net/projects/log4cpp/files/) for log4cpp libraries. Follow the steps given below to install Log4cpp
-      
 
         $ tar -xvf log4cpp-1.0.x.tar.gz
       
@@ -89,7 +88,49 @@ Boost libraries are intended to be widely used, and usable across a broad spectr
         $ make check
 
         $ make install
+        
+<h4>MONGO-DB  INSTALLATION:</h4>
+-------------------------------
 
+<h6>MONGODB CLIENT SERVER:</h6>
+ 
+ * Download the version of mongodb-linux-x86_64-2.0.2 from the link .[Click here to download](http://www.mongodb.org/downloads)
+ 
+ * Extract the mongodb-linux-x86_64-2.0.2.tar.gz. tar file using the command and change it into the bin/directory 
+
+        $ tar -xvf mongodb-linux-x86_64-2.0.2.tar.gz
+
+        $ cd /mongodb-linux-x86_64-2.0.2/bin/
+        
+ * To check successful installation ,execute database server binary file using below given command
+
+        $ ./monogd
+
+ * To open a client database connection execute the binary file using below given command
+
+        $ ./mongo
+         
+<h6>C++ DRIVER :</h6>
+ 
+ * Download the C++ driver(mongodb-linux-x86_64-v2.0)from the link.[Click here to download](http://downloads.mongodb.org/cxx-driver/mongodb-linux-x86_64-v2.0-latest.tgz)
+
+ * Extract the mongodb-linux-x86_64-2.0.2.tar.gz. tar file using the command  
+
+        $ tar -xvf mongodb-linux-x86_64-v2.0.tar.gz 
+ 
+ * To compile the c++ driver,run the scons command in the top-level directory of the driver sources using the following command
+
+        $ cd mongo-cxx-driver-nightly/
+	  
+        $ scons
+
+ * Using In-built Library, 
+
+        $ cd mongo/client
+        
+        $ g++ simple_client_demo.cpp -lmongoclient -lboost_thread-mt -lboost_filesystem -lboost_program_options
+       
+                  
 <h4>GRAYLOG2 INSTALLATION:</h4>
 ------------------------------
 
@@ -103,14 +144,45 @@ Boost libraries are intended to be widely used, and usable across a broad spectr
      
         $ cd graylog2-server-0.9.6/
     
-* Create a copy graylog2.conf using the example configuration file.
- 
+* Create a copy graylog2.conf using the example configuration file.The example paremeters to  are listed
 
         $ cp graylog2.conf.example graylog2.conf
+
+          syslog_listen_port = 514 [default]
+        
+          syslog_protocol = udp [default]
+
+          #MongoDB Configuration ElasticSearch
+
+          elasticsearch_url = http://<ipaddress>:portno/
+        
+          elasticsearch_index_name = graylog2
+        
+          force_syslog_rdns = false [default]
+        
+          mq_batch_size = 4000 [default]
+        
+          mq_poll_freq = 1 [default]
+        
+          mq_max_size = 0 [default]
+
+          mongodb_useauth = true
+
+          mongodb_user = grayloguser
+
+          mongodb_password = password
+    
+          mongodb_host = <ipaddress>
+       
+          #mongodb_replica_set = localhost:27017,localhost:27018,localhost:27019 [default]
+        
+          mongodb_database = graylog
+          
+          mongodb_port = 27017
+
    
 * Start the graylog2-server using given below commands
 
-   
         $ java -jar graylog2-server.jar -f ./graylog2.conf
   
 <h6>Elastic Search </h6>
