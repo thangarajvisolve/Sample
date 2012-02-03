@@ -49,9 +49,9 @@ OpenSplice DDS is one of several open source implementation of the OMG Data Dist
 
 Boost libraries are intended to be widely used, and usable across a broad spectrum of applications. 
 
-* Download the recent version of boost library [Click here to download](http://www.boost.org/users/download/)
+* Download the Boost.1.48.0 version of boost library [Click here to download](http://www.boost.org/users/download/)
 
-* Extract the boost.library tar file 
+* Extract the boost.1.48.0.tar.gz tar file using the following command
 
       	$ tar -xvf boost_1_48_0.tar.gz
 
@@ -112,24 +112,43 @@ Boost libraries are intended to be widely used, and usable across a broad spectr
          
 <h6>C++ DRIVER :</h6>
  
- * Download the C++ driver(mongodb-linux-x86_64-v2.0)from the link.[Click here to download](http://downloads.mongodb.org/cxx-driver/mongodb-linux-x86_64-v2.0-latest.tgz)
+* Download the C++ driver(mongodb-linux-x86_64-v2.0)from the link.[Click here to download](http://downloads.mongodb.org/cxx-driver/mongodb-linux-x86_64-v2.0-latest.tgz)
 
- * Extract the mongodb-linux-x86_64-2.0.2.tar.gz. tar file using the command  
+* Extract the mongodb-linux-x86_64-2.0.2.tar.gz. tar file using the command  
 
         $ tar -xvf mongodb-linux-x86_64-v2.0.tar.gz 
  
- * To compile the c++ driver,run the scons command in the top-level directory of the driver sources using the following command
+* To compile the c++ driver,run the scons command in the top-level directory of the driver sources using the following command
 
         $ cd mongo-cxx-driver-nightly/
 	  
         $ scons
 
- * Using In-built Library, 
+* Using In-built Library, 
 
         $ cd mongo/client
         
-        $ g++ simple_client_demo.cpp -lmongoclient -lboost_thread-mt -lboost_filesystem -lboost_program_options
-       
+<h4>SYSLOG INSTALLATION:</h4>
+
+Syslog supported by a wide variety of devices and receivers across multiple platforms and can be used to integrate log data from many different types of systems into a central repository.
+
+* Syslog installation should be done in `Subscriber machine`  
+  
+* Install the rsyslog.x86_64 version using the following command
+
+        $ yum install rsyslog.x86_64
+
+* Once the installation got completed update the configurations in the file /etc/syslog.conf with the <b>`server ip address:port`</b>
+
+         @@ 0.0.0.0:514
+ 
+* Commands used to start,stop and restart the syslog are given below
+
+        $ /etc/init.d/syslog start
+
+        $ /etc/init.d/syslog stop
+        
+        $ /etc/init.d/syslog restart
                   
 <h4>GRAYLOG2 INSTALLATION:</h4>
 ------------------------------
@@ -144,7 +163,7 @@ Boost libraries are intended to be widely used, and usable across a broad spectr
      
         $ cd graylog2-server-0.9.6/
     
-* Create a copy graylog2.conf using the example configuration file.The example paremeters to  are listed
+* Create a copy graylog2.conf using the example configuration file.The paremeters to be updated are listed below 
 
         $ cp graylog2.conf.example graylog2.conf
 
@@ -154,20 +173,12 @@ Boost libraries are intended to be widely used, and usable across a broad spectr
         
           syslog_protocol = udp [default]
 
-          #MongoDB Configuration ElasticSearch
+          #MongoDB & ElasticSearch configuration 
 
           elasticsearch_url = http://<ipaddress>:portno/
         
           elasticsearch_index_name = graylog2
         
-          force_syslog_rdns = false [default]
-        
-          mq_batch_size = 4000 [default]
-        
-          mq_poll_freq = 1 [default]
-        
-          mq_max_size = 0 [default]
-
           mongodb_useauth = true
 
           mongodb_user = grayloguser
