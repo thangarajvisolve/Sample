@@ -148,6 +148,8 @@ Boost libraries are intended to be widely used, and usable across a broad spectr
 
         $ cp graylog2.conf.example graylog2.conf
 
+          Parameters:
+          
           syslog_listen_port = 514 [default]
         
           syslog_protocol = udp [default]
