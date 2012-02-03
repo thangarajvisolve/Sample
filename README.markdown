@@ -244,9 +244,9 @@ Syslog supported by a wide variety of devices and receivers across multiple plat
  
  * Extract the downloaded zip file using the following command abd change to the instaaltion directory
 
-       $ tar -xvf graylog2-webinterface-0.9.6.tar.gz.
+        $ tar -xvf graylog2-webinterface-0.9.6.tar.gz.
 		
-       $ cd graylog2-webinterface-0.9.6/
+        $ cd graylog2-webinterface-0.9.6/
  
  * Update config/indexer.yml with
 
@@ -326,7 +326,6 @@ Syslog supported by a wide variety of devices and receivers across multiple plat
 
         $ make clean
 
-
 <h4>STEPS TO RUN THE APPLICATIONS </h4>
 
 **1**. Set OpenSpliceDDS environment using the following command
@@ -368,15 +367,12 @@ Available options  are:
         --log4cpp-conf arg       Log configuration and format specification file
     
 Example:
-
     
        $ ./bp-pub --data-gen-ip 127.0.0.1 --data-gen-port 5000 --domain blood --device-id BP_LAB3 --log-info blood.info --log-data blood.data --log4cpp-conf ../src/c++/production/conf/simulation_log_bp.conf
-
 
   * Once the publisher binds with the data generator and send a command, it receives data from data-generator and displays the data in the log files.
 
 **NOTE : The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format**
-
 
 **3.1.1** Multiple publishers need to publish the data on the topic use the following command with the options
 
@@ -518,7 +514,7 @@ Available Options are:
               
 <h6>PULSE OXIMETER:</h6>
 
-**4.1.Pulse oximeter publisher** shall be started by passing the various options suffix to the command .
+**4.1. Pulse oximeter publisher** shall be started by passing the various options suffix to the command .
 
         $ ./pulseox-pub 
 
@@ -596,7 +592,7 @@ Example:
  
 **4.3.** Start the pulseox oximeter alarm on the other terminal using by passing various options suffix to the command
 
-       $ ./pulseox-sub-alarm --
+      $ ./pulseox-sub-alarm --
 
 Available options are:
 
@@ -656,7 +652,7 @@ Example:
 
 <h6>TEMPERATURE MONITOR:</h6>
 
-**5.1.** Temperature monitor publisher shall be started by passing the various options suffix to the command.
+**5.1. Temperature monitor ** publisher shall be started by passing the various options suffix to the command.
 
        $ ./temperature-pub --
 
@@ -688,7 +684,7 @@ Example :
 
 **5.1.1. Multiple publishers** need to publish the data on the topic use the following command with the options
 
-       $ ./tempmonitor-pub.sh --
+       $ ./temperature-pub.sh --
 
 Available options are:
 
@@ -706,7 +702,7 @@ EXAMPLE:
     
 **NOTE : The arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format**
 
-**5.2.** Start the **temperature monitor subscribers** on the other terminal by passing the various options suffix to the command ,
+**5.2.** Start the **temperature-monitor subscribers** on the other terminal by passing the various options suffix to the command ,
 
         $ ./tempmerature-sub-echo
 
@@ -796,7 +792,7 @@ Example:
 
 <h6> ECG </h6>
 
-**6.1  Ecg publisher** shall be started by passing the various options suffix to the command.
+**6.1. Ecg publisher** shall be started by passing the various options suffix to the command.
 
        $ ./ecg-pub --
 
