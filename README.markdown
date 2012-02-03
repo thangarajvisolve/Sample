@@ -49,7 +49,7 @@ OpenSplice DDS is one of several open source implementation of the OMG Data Dist
 
 Boost libraries are intended to be widely used, and usable across a broad spectrum of applications. 
 
-* Download the recent version of boost library  [click here to download](http://www.boost.org/users/download/)
+* Download the recent version of boost library [Click here to download](http://www.boost.org/users/download/)
 
 * Extract the boost.library tar file 
 
