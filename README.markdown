@@ -33,7 +33,7 @@ OpenSplice DDS is one of several open source implementation of the OMG Data Dist
   
 * OpenJDK is pre-requisite for OpenSpliceDDS. Install latest version of OpenJDK (JDK 1.5 minimum required).
 
-* Download the OpenSplice  version of `OpenSpliceDDSV5.4.1-x86_64.linux2.6-gcc412-gnuc25-HDE.tar.gz` from the following link.[Click here to download](http://www.prismtech.com/opensplice/opensplice-dds-community/software-downloads)
+* Download the OpenSplice  version of **OpenSpliceDDSV5.4.1-x86_64.linux2.6-gcc412-gnuc25-HDE.tar.gz** from the following link.[Click here to download](http://www.prismtech.com/opensplice/opensplice-dds-community/software-downloads)
         
 * Extract the downloaded tar file with following command, after extracted the tar file you could find the HDE folder and configure the release.com with installation directory.
 
@@ -341,9 +341,7 @@ Note:`The configurations in elasticsearch.yml,graylog2.conf should be as common`
 
         $ ./data-generator 
      
-  * Data Generator will wait until it receives a request from publisher and once the request is received then it generates the data 
-
-randomly corresponding to the publisher and send it to the publisher. The request can be from any of the three publishers listed below,
+  * Data Generator will wait until it receives a request from publisher and once the request is received then it generates the data randomly corresponding to the publisher and send it to the publisher. The request can be from any of the three publishers listed below,
      
 <h6>BLOOD PRESSURE:</h6>
 
@@ -419,9 +417,7 @@ Available options are:
 
 Example:
 
-         $ /bp-sub-echo --domain blood --device-id BP_LAB3 --log-info blood.info --log-data blood.echo --log4cpp-conf ../src/c++/production/conf/
-
-            simulation_log_bp_sub.conf         
+         $ ./bp-sub-echo --domain blood --device-id BP_LAB3 --log-info blood.info --log-data blood.echo --log4cpp-conf ../src/c++/production/conf/simulation_log_bp_sub.conf         
 
       
   * Once the blood pressure subscriber is started it will retrieve data from the Topic. Subscriber uses ContentFilterTopic to retrieve messages based on the Device ID from a single topic.
