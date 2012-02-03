@@ -1,16 +1,17 @@
 ############################################################################################
 #                                                                                          #
-#                 Netspective Fluent M2M Platform                                          #
+#                 <h2>Netspective Fluent M2M Platform</h2>                                 #
 #                                                                                          #
 ############################################################################################
 
-OVERVIEW
-========
+<h4>OVERVIEW:</h4>
+------------------
+
 Netspective Fluent consists of interfaces to retrieve data from connected devices through RS232, 
 Ethernet, USB, GSM, and other connection channels. 
 
-REQUIREMENTS
-------------
+<h4>REQUIREMENTS:</h4>
+----------------------
 The requirements for compiling and running :
 
 * OpenSplice DDS v5.x  
@@ -23,12 +24,12 @@ The requirements for compiling and running :
 
 * Websocketpp (WebSocket C++ Library)
 
-INSTALLATION STEPS
-------------------
+<h4>INSTALLATION STEPS</h4>
 
-OPENSPLICEDDS
--------------
-  OpenSplice DDS is one of several open source implementation of the OMG Data Distribution Service for Real-Time Systems (DDS) standard.
+<h6>OPENSPLICEDDS</h6>
+----------------------
+
+OpenSplice DDS is one of several open source implementation of the OMG Data Distribution Service for Real-Time Systems (DDS) standard.
   
 * OpenJDK is pre-requisite for OpenSpliceDDS. Install latest version of OpenJDK.
 
@@ -44,8 +45,7 @@ OPENSPLICEDDS
       
       	$ ospl start
 
-BOOST LIBRARY
-------------
+<h6>BOOST LIBRARY</h6>
 
 Boost libraries are intended to be widely used, and usable across a broad spectrum of applications. 
 
@@ -66,16 +66,15 @@ Boost libraries are intended to be widely used, and usable across a broad spectr
         $  export CPLUS_INCLUDE_PATH=/usr/local/boost_1_48_0:
 
 
-DEVELOPMENT LIBRARIES
----------------------
+<h6>DEVELOPMENT LIBRARIES</h6>
 
 * GCC is an integrated distribution of compilers for several major programming languages.
 
         $ yum install "Develoment Tools"
       
         
-LOG FOR C++
------------
+<h6>LOG FOR C++</h6>
+
 * Log4cpp is library of C++ classes for logging to files, syslog and other destinations.[Click here to download](http://sourceforge.net/projects/log4cpp/files/) for log4cpp libraries. Follow the steps given below to install Log4cpp
       
 
@@ -91,10 +90,10 @@ LOG FOR C++
 
         $ make install
 
-GRAYLOG2 INSTALLATION:
----------------------
+<h4>GRAYLOG2 INSTALLATION:</h4>
+------------------------------
 
-Graylog2 Server:
+</h6>Graylog2 Server:</h6>
 
 * Download the version of graylog2 server0.9.6 from the following link.[Click here to download](https://github.com/Graylog2/graylog2-server/downloads)
  
@@ -114,7 +113,7 @@ Graylog2 Server:
    
         $ java -jar graylog2-server.jar -f ./graylog2.conf
   
-Elastic Search 
+<h6>Elastic Search </h6>
 
 * Download elasticsearch 0.18.6 version from the link [Click here to download](http://www.elasticsearch.org/download/) and unpack it, 
 
@@ -156,7 +155,7 @@ Elastic Search
  
 Note:`The configurations in elasticsearch.yml,graylog2.conf should be as common`.
  
-Graylog2-Web Interface:
+<h6>Graylog2-Web Interface:</h6>
 
  * Download  version of graylog2-web interface 0.9.6 from the link.[Click here to download](https://github.com/Graylog2/graylog2-web-interface/downloads)
  
@@ -223,8 +222,8 @@ Graylog2-Web Interface:
 	
  Note:`The configured database name,user name,password, ipaddress,port numbers of MongoDB in graylog2.conf,mongoid.yml should be as common`
     
-COMPILATION STEPS
------------------
+<h4>COMPILATION STEPS</h4>
+--------------------------
 
 * Set OpenSliceDDS environment variables from the Opensplice installed directory as shown below.
 
@@ -245,8 +244,7 @@ COMPILATION STEPS
         $ make clean
 
 
-STEPS TO RUN THE APPLICATIONS 
-=============================
+<h4>STEPS TO RUN THE APPLICATIONS </h4>
 
 **1**. Set OpenSpliceDDS environment using the following command
 
@@ -264,7 +262,7 @@ STEPS TO RUN THE APPLICATIONS
 
 randomly corresponding to the publisher and send it to the publisher. The request can be from any of the three publishers listed below,
      
-**BLOOD PRESSURE:**
+<h6>BLOOD PRESSURE:</h6>
 
 **3.1.** Start the `blood pressure publisher` shall be started by passing the various options suffix to the command .
 
@@ -422,8 +420,8 @@ Example
 
 NOTE :` The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.`
 
-**Common Webserver:**
-  
+<h6>Common Webserver:</h6>
+
   * Start the `Common Webserver`in the terminal by passing few options suffix to the command ,it can be used as common for all the subsrcibers-webserver
 
         $./web-listener
@@ -447,7 +445,7 @@ Available Options are:
 NOTE: `Domain name and device id are missed in the URL then the entire device data will be displayed.`
 
               
-**PULSE OXIMETER:**
+<h6>ULSE OXIMETER:</h6>
 
 **4.1.** `Pulse oximeter publisher` shall be started by passing the various options suffix to the command .
 
@@ -592,7 +590,7 @@ Example:
 
 NOTE : `The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.`
 
-**TEMPERATURE MONITOR:**
+<h6>TEMPERATURE MONITOR:</h6>
 
 **5.1.** Temperature monitor publisher shall be started by passing the various options suffix to the command.
 
@@ -740,7 +738,7 @@ Example:
 
 NOTE : `The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.`
 
-** ECG **
+<h6> ECG </h6>
 
 **6.1**  Ecg publisher shall be started by passing the various options suffix to the command.
 
@@ -799,11 +797,7 @@ Example:
 NOTE :  `The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.`
 
 
-
-
-
-STEPS TO RUN THE DISTRIBUTED APPLICATION:
-========================================
+<h4>STEPS TO RUN THE DISTRIBUTED APPLICATION:</h4>
 
 **1.** From the installation location of OpenspliceDDS, we need to change the few confiuration in the ospl config file located in,
 
