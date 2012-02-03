@@ -118,15 +118,16 @@ Boost libraries are intended to be widely used, and usable across a broad spectr
 
         $ tar -xvf mongodb-linux-x86_64-v2.0.tar.gz 
  
-* To compile the c++ driver,run the scons command in the top-level directory of the driver sources using the following command
+* To compile the c++ driver, run the given below command in the top-level directory of the driver sources using the following command
 
         $ cd mongo-cxx-driver-nightly/
 	  
         $ scons
 
-* Using In-built Library, 
+* Run the following command to make sure, mongoDB libraries were built properly.
 
         $ cd mongo/client
+        $ g++ simple_client_demo.cpp -lmongoclient -lboost_thread-mt -lboost_filesystem -lboost_program_options
         
 <h4>SYSLOG INSTALLATION:</h4>
 
@@ -142,14 +143,10 @@ Syslog supported by a wide variety of devices and receivers across multiple plat
 
          @@ 0.0.0.0:514
  
-* Commands used to start,stop and restart the syslog are given below
+* Commands used to restart the syslog are given below
 
-        $ /etc/init.d/syslog start
-
-        $ /etc/init.d/syslog stop
-        
         $ /etc/init.d/syslog restart
-                  
+                         
 <h4>GRAYLOG2 INSTALLATION:</h4>
 ------------------------------
 
