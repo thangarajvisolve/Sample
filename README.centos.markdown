@@ -114,14 +114,25 @@ Boost libraries are intended to be widely used, and usable across a broad spectr
  
 * Download the C++ driver(mongodb-linux-x86_64-v2.0)from the link.[Click here to download](http://downloads.mongodb.org/cxx-driver/mongodb-linux-x86_64-v2.0-latest.tgz)
 
-* Extract the mongodb-linux-x86_64-2.0.2.tar.gz. tar file using the command  
+* Extract the cxx-driver/mongodb-linux-x86_64-v1.8-latest.tgz tar file using the command  
 
-        $ tar -xvf mongodb-linux-x86_64-v2.0.tar.gz 
+        $ tar -xvf mongodb-linux-x86_64-v1.8-latest.tar.gz 
  
 * To compile the c++ driver, run the given below command in the top-level directory of the driver sources using the following command
 
-        $ cd mongo-cxx-driver-nightly/
+        $ /
+* Download **SCons** versio scons-2.1.0-1.noarch.rpm from the folowing link.(Click here to download)[http://www.scons.org/download.php]
 	  
+        $ rpm -ivh scons-2.1.0-1.noarch.rpm
+
+        $ cd mongo-cxx-driver-1.8.0.v1
+        
+* Create the symbollic link to the boost libraries  using the following command
+ 
+        $ ln -s /usr/local/boost_1_48_0/stage/lib/* /lib/*
+ 
+        $ ln -s /usr/local/boost_1_48_0/boost /usr/include
+
         $ scons
 
 * Run the following command to make sure, mongoDB libraries were built properly.
@@ -260,9 +271,9 @@ Syslog supported by a wide variety of devices and receivers across multiple plat
 
        production:
          
-         host: <ipaddress>
+         host: <mongodb:ipaddress>
       
-         port: <portno>
+         port: <mongodb:portno>
        
          username: db_username
         
@@ -281,7 +292,7 @@ Syslog supported by a wide variety of devices and receivers across multiple plat
 
          $ ./configure --prefix=/usr/local/ruby
 	
-         $ make && sudo make install
+         $ make & make install
 
  * Export the PATH and GEM_HOME enviornment variables as given below.
 
@@ -289,13 +300,34 @@ Syslog supported by a wide variety of devices and receivers across multiple plat
 
         $ export GEM_HOME=/usr/local/ruby
 
- * Now install the required gem packages, including Rails 3
+ * Once the install is complete, verify the version of Ruby:
 
-        $ sudo gem install tzinfo builder memcache-client rack rack-test erubis mail text-format bundler thor i18n sqlite3-ruby
-	
-        $ sudo gem install rack-mount --version=0.4.0
+        $ ruby -v
+          ruby 1.9.2p0 (2010-08-18 revision 29036)
 
-        $ sudo gem install rails --version 3.0.0
+The Ruby source package also installs RubyGems, the Ruby package manager.Verify the version of RubyGems:
+
+        $ gem -v
+          
+          1.3.7
+
+Check for updated gems
+
+Ensure you have the latest gem versions by running this command:
+
+        $ gem update --system
+
+Install the rake build language
+
+        $ gem install rake
+
+* Install rails
+
+        $ gem install rails
+       
+* List the installed gems.
+
+        $ gem list
 
  * Start the web interface from the installation folder by using the command
 
