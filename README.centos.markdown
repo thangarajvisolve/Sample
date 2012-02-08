@@ -112,20 +112,19 @@ Boost libraries are intended to be widely used, and usable across a broad spectr
          
 <h6>C++ DRIVER :</h6>
  
-* Download the C++ driver(mongodb-linux-x86_64-v2.0)from the link.[Click here to download](http://downloads.mongodb.org/cxx-driver/mongodb-linux-x86_64-v2.0-latest.tgz)
+* Download the C++ driver(mongodb-linux-x86_64-v2.0)from the link.[Click here to download](http://downloads.mongodb.org/cxx-driver/mongodb-linux-x86_64-v1.0-latest.tgz)
 
 * Extract the cxx-driver/mongodb-linux-x86_64-v1.8-latest.tgz tar file using the command  
 
         $ tar -xvf mongodb-linux-x86_64-v1.8-latest.tar.gz 
  
 * To compile the c++ driver, run the given below command in the top-level directory of the driver sources using the following command
-
-        $ /
-* Download **SCons** versio scons-2.1.0-1.noarch.rpm from the folowing link.(Click here to download)[http://www.scons.org/download.php]
+        
+* Download **SCons** version scons-2.1.0-1.noarch.rpm from the folowing link.[Click here to download](http://www.scons.org/download.php)
 	  
         $ rpm -ivh scons-2.1.0-1.noarch.rpm
 
-        $ cd mongo-cxx-driver-1.8.0.v1
+        $ cd mongo-cxx-driver-1.8.0.v1/
         
 * Create the symbollic link to the boost libraries  using the following command
  
