@@ -334,7 +334,11 @@ Install the rake build language
 
         $ gem list
 
- * Start the web interface from the installation folder by using the command
+* To make successful installation of all files from gem package , use the command to install missing libraries
+
+        $ bundle install 
+
+* Start the web interface from the installation folder by using the command
 
         $ cd <WEB_INTERFACE_INSTALLTION_PATH>
 	
