@@ -70,7 +70,7 @@ Boost libraries are intended to be widely used, and usable across a broad spectr
 
 * GCC is an integrated distribution of compilers for several major programming languages.
 
-        $ yum groupinstall "Develoment Tools"
+        $ yum groupinstall "Development Tools"
               
 <h6>LOG FOR C++</h6>
 
@@ -278,15 +278,25 @@ Syslog supported by a wide variety of devices and receivers across multiple plat
 
  * Install the latest version of ruby on rails which should be 1.9.2,follow the steps for installation by [clicking here]( http://torqueo.net/installing-ruby-192-and-rails-3) or using below steps shall make to install   
 
-         $ wget ftp://ftp.ruby-lang.org//pub/ruby/1.9/ruby-1.9.2-p0.tar.gz
+ * Check for older version RUBY installed via RPM using the following command, 
+    
+         $ rpm -qa |grep "ruby"
 
-         $ tar -xvf ruby-1.9.2-p0.tar.gz
+ * If older version exists, uninstall it before proceeding using the command
 
-         $ cd ruby-1.9.2-p0/
+        $ rpm -e package_name
+        
+        $ wget ftp://ftp.ruby-lang.org//pub/ruby/1.9/ruby-1.9.2-p0.tar.gz
 
-         $ ./configure --prefix=/usr/local/ruby
+        $ tar -xvf ruby-1.9.2-p0.tar.gz
+
+        $ cd ruby-1.9.2-p0/
+
+        $ ./configure --prefix=/usr/local/ruby
 	
-         $ make & make install
+        $ make 
+        
+        $ make install
 
  * Export the PATH and GEM_HOME enviornment variables as given below.
 
@@ -297,9 +307,10 @@ Syslog supported by a wide variety of devices and receivers across multiple plat
  * Once the install is complete, verify the version of Ruby:
 
         $ ruby -v
-          ruby 1.9.2p0 (2010-08-18 revision 29036)
+                   
+        ruby 1.9.2p0 (2010-08-18 revision 29036)
 
-The Ruby source package also installs RubyGems, the Ruby package manager.Verify the version of RubyGems:
+ * Ruby source package also installs RubyGems, the Ruby package manager.Verify the version of RubyGems:
 
         $ gem -v
           
