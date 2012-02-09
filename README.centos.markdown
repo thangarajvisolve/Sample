@@ -111,19 +111,15 @@ Boost libraries are intended to be widely used, and usable across a broad spectr
          
 <h6>C++ DRIVER :</h6>
  
-* Download the C++ driver(mongodb-linux-x86_64-v2.0)from the link.[Click here to download](http://downloads.mongodb.org/cxx-driver/mongodb-linux-x86_64-v1.0-latest.tgz)
+* Download the C++ driver(mongodb-linux-x86_64-v1.8)from the link.[Click here to download](http://downloads.mongodb.org/cxx-driver/mongodb-linux-x86_64-v1.8-latest.tgz)
 
-* Extract the cxx-driver/mongodb-linux-x86_64-v1.8-latest.tgz tar file using the command  
+* Extract the mongodb-linux-x86_64-v1.8-latest.tgz tar file using the command  
 
         $ tar -xvf mongodb-linux-x86_64-v1.8-latest.tar.gz 
  
-* To compile the c++ driver, run the given below command in the top-level directory of the driver sources using the following command
-        
 * Download **SCons** version scons-2.1.0-1.noarch.rpm from the folowing link.[Click here to download](http://www.scons.org/download.php)
 	  
         $ rpm -ivh scons-2.1.0-1.noarch.rpm
-
-        $ cd mongo-cxx-driver-1.8.0.v1/
         
 * Create the symbollic link to the boost libraries  using the following command
  
@@ -132,6 +128,8 @@ Boost libraries are intended to be widely used, and usable across a broad spectr
         $ ln -s /usr/local/boost_1_48_0/boost /usr/include
 
 * To compile the "standalone" C++ driver, run the scons command in the installation directory of the driver 
+
+        $ cd mongo-cxx-driver-v1.8
                                 
         $ scons
 
@@ -245,15 +243,15 @@ Syslog supported by a wide variety of devices and receivers across multiple plat
  
 <h6>Graylog2-Web Interface:</h6>
 
- * Download  version of graylog2-web interface 0.9.6 from the link.[Click here to download](https://github.com/Graylog2/graylog2-web-interface/downloads)
+* Download  version of graylog2-web interface 0.9.6 from the link.[Click here to download](https://github.com/Graylog2/graylog2-web-interface/downloads)
  
- * Extract the downloaded zip file using the following command abd change to the instaaltion directory
+* Extract the downloaded zip file using the following command abd change to the instaaltion directory
 
         $ tar -xvf graylog2-webinterface-0.9.6.tar.gz.
 		
         $ cd graylog2-webinterface-0.9.6/
  
- * Update config/indexer.yml with
+* Update config/indexer.yml with
 
        production
       
@@ -261,7 +259,7 @@ Syslog supported by a wide variety of devices and receivers across multiple plat
          
         index_name: graylog2
 
- * Update config/mongoid.yml with
+* Update config/mongoid.yml with
 
        production:
          
@@ -276,13 +274,13 @@ Syslog supported by a wide variety of devices and receivers across multiple plat
          database: db_name
 
 
- * Install the latest version of ruby on rails which should be 1.9.2,follow the steps for installation by [clicking here]( http://torqueo.net/installing-ruby-192-and-rails-3) or using below steps shall make to install   
+* Install the latest version of ruby on rails which should be 1.9.2,follow the steps for installation by [clicking here]( http://torqueo.net/installing-ruby-192-and-rails-3) or using below steps shall make to install   
 
- * Check for older version RUBY installed via RPM using the following command, 
+* Check for older version RUBY installed via RPM using the following command, 
     
          $ rpm -qa |grep "ruby"
 
- * If older version exists, uninstall it before proceeding using the command
+* If older version exists, uninstall it before proceeding using the command
 
         $ rpm -e package_name
         
@@ -298,31 +296,29 @@ Syslog supported by a wide variety of devices and receivers across multiple plat
         
         $ make install
 
- * Export the PATH and GEM_HOME enviornment variables as given below.
+* Export the PATH and GEM_HOME enviornment variables as given below.
 
         $ export PATH=/usr/local/ruby/bin:$PATH
 
         $ export GEM_HOME=/usr/local/ruby
 
- * Once the install is complete, verify the version of Ruby:
+* Once the install is complete, verify the version of Ruby:
 
         $ ruby -v
                    
         ruby 1.9.2p0 (2010-08-18 revision 29036)
 
- * Ruby source package also installs RubyGems, the Ruby package manager.Verify the version of RubyGems:
+* Ruby source package also installs RubyGems, the Ruby package manager. Verify the version of RubyGems:
 
         $ gem -v
           
-          1.3.7
+        1.3.7
 
-Check for updated gems
-
-Ensure you have the latest gem versions by running this command:
+* Check for updated gems and ensure you have the latest gem versions by running this command:
 
         $ gem update --system
 
-Install the rake build language
+* Install the rake build language
 
         $ gem install rake
 
