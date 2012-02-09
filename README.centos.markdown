@@ -117,7 +117,7 @@ Boost libraries are intended to be widely used, and usable across a broad spectr
 
         $ tar -xvf mongodb-linux-x86_64-v1.8-latest.tar.gz 
  
-* Download **SCons** version scons-2.1.0-1.noarch.rpm from the folowing link.[Click here to download](http://www.scons.org/download.php)
+* Download **SCons** version scons-2.1.0-1.noarch.rpm from the folowing link.[Click here to download](http://sourceforge.net/projects/scons/files/scons/2.1.0/scons-2.1.0-1.noarch.rpm/download)
 	  
         $ rpm -ivh scons-2.1.0-1.noarch.rpm
         
@@ -215,7 +215,7 @@ Syslog supported by a wide variety of devices and receivers across multiple plat
 
 * Configure basic elasticsearch values in the existing config/elasticsearch.yml [elasticsearch configurations details](http://www.elasticsearch.org/guide/reference/setup/configuration.html)
 
-        network.host: <ipaddress>
+        network.host: <elasticsearchip:ipaddress>
         
         path.logs: /var/log/elasticsearch
         
@@ -235,6 +235,29 @@ Syslog supported by a wide variety of devices and receivers across multiple plat
 	
 * Start elasticsearch instance using the command
 
+        $ ./elasticsearch 
+
+* Commands usage:
+
+        console      Launch in the current console.
+     
+        start        Start in the background as a daemon process.
+     
+        stop         Stop if running as a daemon or in another console.
+     
+        restart      Stop if running and then start.
+    
+        condrestart  Restart only if already running.
+    
+        status       Query the current status.
+     
+        install      Install to start automatically when system boots.
+     
+        remove       Uninstall.
+     
+        dump         Request a Java thread dump if running.`
+
+
         $ ./elasticsearch start 
 
 * Elasticsearch instance started successfully the we can check it in the log files either in the same directory or default in **/var/log/elasticsearch/graylog2.log**
@@ -245,7 +268,7 @@ Syslog supported by a wide variety of devices and receivers across multiple plat
 
 * Download  version of graylog2-web interface 0.9.6 from the link.[Click here to download](https://github.com/Graylog2/graylog2-web-interface/downloads)
  
-* Extract the downloaded zip file using the following command abd change to the instaaltion directory
+* Extract the downloaded zip file using the following command abd change to the installation directory
 
         $ tar -xvf graylog2-webinterface-0.9.6.tar.gz.
 		
@@ -253,7 +276,7 @@ Syslog supported by a wide variety of devices and receivers across multiple plat
  
 * Update config/indexer.yml with
 
-       production
+        production
       
         url: http://0.0.0.0:0000/
          
@@ -261,7 +284,7 @@ Syslog supported by a wide variety of devices and receivers across multiple plat
 
 * Update config/mongoid.yml with
 
-       production:
+        production:
          
          host: <mongodb:ipaddress>
       
@@ -274,7 +297,7 @@ Syslog supported by a wide variety of devices and receivers across multiple plat
          database: db_name
 
 
-* Install the latest version of ruby on rails which should be 1.9.2,follow the steps for installation by [clicking here]( http://torqueo.net/installing-ruby-192-and-rails-3) or using below steps shall make to install   
+* Install the latest version of ruby on rails which should be 1.9.2,follow the steps for installation by using below steps shall make to install successfully   
 
 * Check for older version RUBY installed via RPM using the following command, 
     
