@@ -411,7 +411,7 @@ Example:
 
 **NOTE : The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format**
 
-**3.1.1** Multiple publishers need to publish the data on the topic use the following command with the options
+**3.1.1 Multiple publishers** need to publish the data on the topic use the following command with the options
 
        $ ./bp-pub.sh --
 
@@ -527,7 +527,7 @@ Example
 
 <h6>PULSE OXIMETER:</h6>
 
-**4.1. Pulse oximeter publisher** shall be started by passing the various options suffix to the command .
+**4.1. PulseoxMeter publisher** shall be started by passing the various options suffix to the command .
 
         $ ./pulseox-pub 
 
@@ -577,7 +577,7 @@ EXAMPLE:
 
 **NOTE :The arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format**
 
-**4.2.** Start the **pulse oximeter subscribers** on the other terminal using by passing various options suffix to the command,
+**4.2.** Start the **pulseox meter subscribers** on the other terminal using by passing various options suffix to the command,
 
        $ ./pulseox-sub-echo -
 
@@ -603,7 +603,7 @@ Example:
 
 **NOTE : The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.**
  
-**4.3.** Start the ** pulseox oximeter alarm ** on the other terminal using by passing various options suffix to the command
+**4.3.** Start the **pulseox meter alarm** on the other terminal using by passing various options suffix to the command
 
       $ ./pulseox-sub-alarm --
 
@@ -633,7 +633,7 @@ Example:
 
 **NOTE : The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.**
 
-**4.4.** Start the **pulse oximeter persist** on the other terminal using by passing various options suffix to the command 
+**4.4.** Start the **pulseox meter persist** on the other terminal using by passing various options suffix to the command
 
        $ ./pulseox-sub-persist -- 
 
@@ -695,7 +695,7 @@ Example :
 
 **NOTE : The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.**
 
-**5.1.1. Multiple publishers** need to publish the data on the topic use the following command with the options
+**5.1.1. Multiple publishers** need to publish the data on the topic ,using the following command with the options
 
        $ ./temperature-pub.sh --
 
@@ -773,7 +773,7 @@ Example:
 
 **NOTE : The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.**
 
-**5.4.** Start the **temperature-monitor persistence** by passing the various options suffix to the command,
+**5.4.** Start the **temperature-monitor persists** by passing the various options suffix to the command,
 
        $ ./temperature-sub-persist 
 
