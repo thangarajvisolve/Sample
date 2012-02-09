@@ -70,9 +70,8 @@ Boost libraries are intended to be widely used, and usable across a broad spectr
 
 * GCC is an integrated distribution of compilers for several major programming languages.
 
-        $ yum install "Develoment Tools"
-      
-        
+        $ yum groupinstall "Develoment Tools"
+              
 <h6>LOG FOR C++</h6>
 
 * Log4cpp is library of C++ classes for logging to files, syslog and other destinations.[Click here to download](http://sourceforge.net/projects/log4cpp/files/) for log4cpp libraries. Follow the steps given below to install Log4cpp
@@ -132,14 +131,10 @@ Boost libraries are intended to be widely used, and usable across a broad spectr
  
         $ ln -s /usr/local/boost_1_48_0/boost /usr/include
 
+* To compile the "standalone" C++ driver, run the scons command in the installation directory of the driver 
+                                
         $ scons
 
-* Run the following command to make sure, mongoDB libraries were built properly.
-
-        $ cd mongo/client
-        
-        $ g++ simple_client_demo.cpp -lmongoclient -lboost_thread-mt -lboost_filesystem -lboost_program_options
-        
 <h4>SYSLOG INSTALLATION:</h4>
 
 Syslog supported by a wide variety of devices and receivers across multiple platforms and can be used to integrate log data from many different types of systems into a central repository.
