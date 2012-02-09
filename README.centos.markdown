@@ -603,7 +603,7 @@ Example:
 
 **NOTE : The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.**
  
-**4.3.** Start the pulseox oximeter alarm on the other terminal using by passing various options suffix to the command
+**4.3.** Start the ** pulseox oximeter alarm ** on the other terminal using by passing various options suffix to the command
 
       $ ./pulseox-sub-alarm --
 
@@ -633,7 +633,7 @@ Example:
 
 **NOTE : The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.**
 
-**4.4.** Start the pulse oximeter persist on the other terminal using by passing various options suffix to the command 
+**4.4.** Start the **pulse oximeter persist** on the other terminal using by passing various options suffix to the command 
 
        $ ./pulseox-sub-persist -- 
 
@@ -665,7 +665,7 @@ Example:
 
 <h6>TEMPERATURE MONITOR:</h6>
 
-**5.1. Temperature monitor ** publisher shall be started by passing the various options suffix to the command.
+**5.1. Temperature monitor** publisher shall be started by passing the various options suffix to the command
 
        $ ./temperature-pub --
 
