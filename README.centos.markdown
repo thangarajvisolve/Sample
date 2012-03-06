@@ -24,10 +24,14 @@ The requirements for compiling and running :
 
 * Websocketpp (WebSocket C++ Library)
 
+* Syslog Configuration
+  
 <h4>INSTALLATION STEPS</h4>
 
 <h6>OPENSPLICEDDS</h6>
 ----------------------
+
+Note: Keep all the packages in /opt path and Troubleshooting steps available in bottom of this document
 
 OpenSplice DDS is one of several open source implementation of the OMG Data Distribution Service for Real-Time Systems (DDS) standard.
   
@@ -41,17 +45,33 @@ OpenSplice DDS is one of several open source implementation of the OMG Data Dist
 
 * Use the given commands to setup the environment and start DDS service
 
+* Replace "@@INSTALLDIR@@" with the installed opsl directory path
+
       	$ source release.com
       
       	$ ospl start
 
+<h6>DEVELOPMENT LIBRARIES</h6>
+
+* GCC is an integrated distribution of compilers for several major programming languages.
+
+        $ yum groupinstall "Development Tools"
+        
+        $ yum install zlib zlib-devel bzip2 bzip2-devel python python-devel libicu gcc44 gcc44-c++ pcre pcre-devel openssl openssl-devep httpd php
+              
 <h6>BOOST LIBRARY</h6>
 
 Boost libraries are intended to be widely used, and usable across a broad spectrum of applications. 
 
-* Download the Boost.1.48.0 version of boost library [Click here to download](http://www.boost.org/users/download/)
+* Check for existing boost library,if it's exists remove using the following command   
 
-* Extract the boost.1.48.0.tar.gz tar file using the following command
+        $ rpm -qa|grep boost
+  
+        $ rpm -e <package_name>
+
+* Download  Boost.1.48.0 version of boost library [Click here to download](http://www.boost.org/users/download/)
+
+* Extract  boost.1.48.0.tar.gz file using the following command
 
       	$ tar -xvf boost_1_48_0.tar.gz
 
@@ -59,27 +79,20 @@ Boost libraries are intended to be widely used, and usable across a broad spectr
 
         $ ./bootstrap.sh
 	
-* Export the required environment variables with the appropriate path
+* Required create symbolic link with the appropriate path
 
-        $  export LD_LIBRARY_PATH=/usr/local/boost_1_48_0/stage/lib:
+        $  ln -s /opt/boost_1_48_0/stage/lib/* /lib
  
-        $  export CPLUS_INCLUDE_PATH=/usr/local/boost_1_48_0:
+        $  ln -s /opt/boost_1_48_0/boost /usr/include
 
-
-<h6>DEVELOPMENT LIBRARIES</h6>
-
-* GCC is an integrated distribution of compilers for several major programming languages.
-
-        $ yum groupinstall "Development Tools"
-              
 <h6>LOG FOR C++</h6>
 
 * Log4cpp is library of C++ classes for logging to files, syslog and other destinations.[Click here to download](http://sourceforge.net/projects/log4cpp/files/) for log4cpp libraries. Follow the steps given below to install Log4cpp
 
-        $ tar -xvf log4cpp-1.0.x.tar.gz
+        $ tar -xvf log4cpp-1.0.tar.gz
       
-        $ cd log4cpp-1.0.x
-        
+        $ cd log4cpp-1.0/
+                     
         $ ./configure
         
         $ make
@@ -88,6 +101,8 @@ Boost libraries are intended to be widely used, and usable across a broad spectr
 
         $ make install
         
+        $ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
+        
 <h4>MONGO-DB  INSTALLATION:</h4>
 -------------------------------
 
@@ -95,7 +110,7 @@ Boost libraries are intended to be widely used, and usable across a broad spectr
  
  * Download the version of mongodb-linux-x86_64-2.0.2 from the link .[Click here to download](http://www.mongodb.org/downloads)
  
- * Extract the mongodb-linux-x86_64-2.0.2.tar.gz. tar file using the command and change it into the bin/directory 
+ * Extract the mongodb-linux-x86_64-2.0.2.tar.gz  tar file using the command and change it into the bin/directory 
 
         $ tar -xvf mongodb-linux-x86_64-2.0.2.tar.gz
 
@@ -103,30 +118,34 @@ Boost libraries are intended to be widely used, and usable across a broad spectr
         
  * To check successful installation ,execute database server binary file using below given command
 
+        $ mkdir -p /data/db/
+        
+        $ chown `id -u` /data/db
+        
         $ ./monogd
 
  * To open a client database connection execute the binary file using below given command
 
         $ ./mongo
+        
+        $ > use <DATABASE_NAME>
+        
+        $ > db.addUser('<USERNAME>','<PASSWORD>');
+        
+        $ > db.auth('<USERNAME>','<PASSWORD>');
          
 <h6>C++ DRIVER :</h6>
  
 * Download the C++ driver(mongodb-linux-x86_64-v1.8)from the link.[Click here to download](http://downloads.mongodb.org/cxx-driver/mongodb-linux-x86_64-v1.8-latest.tgz)
 
-* Extract the mongodb-linux-x86_64-v1.8-latest.tgz tar file using the command  
+* Extract  mongodb-linux-x86_64-v1.8-latest.tgz file using the command  
 
         $ tar -xvf mongodb-linux-x86_64-v1.8-latest.tar.gz 
  
 * Download **SCons** version scons-2.1.0-1.noarch.rpm from the folowing link.[Click here to download](http://sourceforge.net/projects/scons/files/scons/2.1.0/scons-2.1.0-1.noarch.rpm/download)
-	  
+
         $ rpm -ivh scons-2.1.0-1.noarch.rpm
         
-* Create the symbollic link to the boost libraries  using the following command
- 
-        $ ln -s /usr/local/boost_1_48_0/stage/lib/* /lib/*
- 
-        $ ln -s /usr/local/boost_1_48_0/boost /usr/include
-
 * To compile the "standalone" C++ driver, run the scons command in the installation directory of the driver 
 
         $ cd mongo-cxx-driver-v1.8
@@ -137,20 +156,90 @@ Boost libraries are intended to be widely used, and usable across a broad spectr
 
 Syslog supported by a wide variety of devices and receivers across multiple platforms and can be used to integrate log data from many different types of systems into a central repository.
 
-* Syslog installation should be done in **Subscriber machine**  
-  
-* Install the rsyslog.x86_64 version using the following command
+* Check for existing syslog and if its exist, use the below listed commands to uninsall it
 
-        $ yum install rsyslog.x86_64
+        $ rpm -aq | grep syslog
 
-* Once the installation got completed update the configurations in the file /etc/syslog.conf with the **server ip address:port.**
+        $ rpm --nodeps -e <syslog_package>
 
-         @@ 0.0.0.0:514
+*  Download the syslog and eventlog rpm package ,using following commands
+
+        $ wget ftp://ftp.pbone.net/mirror/centos.karan.org/el5/extras/testing/x86_64/RPMS/syslog-ng-2.0.3-1.el5.kb.x86_64.rpm
+
+        $ wget ftp://ftp.pbone.net/mirror/centos.karan.org/el5/extras/testing/x86_64/RPMS/eventlog-0.2.5-6.el5.kb.x86_64.rpm
+
+* Install syslog  and eventlog rpm uisng the following command
+
+        $ rpm -ivh eventlog-0.2.5-6.el5.kb.x86_64.rpm
+   
+        $ rpm -ivh syslog-ng-2.0.3-1.el5.kb.x86_64.rpm
+
+* Update the configuration in syslog-ng.conf using the following command
+
+        $ vim /etc/syslog-ng/syslog-ng.conf
+
+          destination netspective { udp("172.16.1.96" port(514)); };
+          
+          source s_all {internal(); 
+          
+          unix-stream("/dev/log");
+          
+          file("/proc/kmsg" log_prefix("kernel: "));};
  
+          log { source(s_all); destination(netspective); };
+
 * Command used to restart the syslog are given below
 
-        $ /etc/init.d/syslog restart
+        $ /etc/init.d/syslog-ng restart
                          
+<h6>Elastic Search </h6>
+
+* Download elasticsearch 0.18.6 version from the link [Click here to download](http://www.elasticsearch.org/download/) and unpack it, 
+
+        $ tar -xvf elasticsearch-0.18.6.tar.gz
+		 
+        $ cd elasticsearch-0.18.6
+		
+* Create a data and log directory
+
+        $ mkdir /var/data/elasticsearch
+		
+        $ mkdir /var/log/elasticsearch
+
+* Configure basic elasticsearch values in the existing config/elasticsearch.yml [elasticsearch configurations details](http://www.elasticsearch.org/guide/reference/setup/configuration.html)
+
+        network.host: <elasticsearch_ipaddress>
+        
+        path.logs : /var/log/elasticsearch
+        
+        path.data : /var/data/elasticsearch
+        
+        cluster.name : graylog2 
+        
+        http port : <PORT>
+        
+        http.enabled: true
+        
+        http.max_content_length: 100mb
+
+        
+* Download elasticsearch-servicewrapper into your elasticserach/bin installation directory and unpack it there,using the following commands from the terminal 
+
+        $ wget  --no-check-certificate https://github.com/elasticsearch/elasticsearch-servicewrapper/zipball/master
+  
+        $ mv master elasticsearch-servicewrapper.zip && unzip elasticsearch-servicewrapper.zip
+	
+        $ mv elasticsearch-elasticsearch-servicewrapper-*/* . && rm -rf elasticsearch-elasticsearch-servicewrapper-*
+
+* Update the set.default.ES_HOME path in bin/service/elasticsearch.conf to elastic search installation directory.
+	
+* Start elasticsearch instance using the command
+
+        $ ./elasticsearch start 
+
+* Elasticsearch instance started successfully the we can check it in the log files either in the same directory or default in **/var/log/elasticsearch/graylog2.log**
+ 
+
 <h4>GRAYLOG2 INSTALLATION:</h4>
 ------------------------------
 
@@ -182,86 +271,22 @@ Syslog supported by a wide variety of devices and receivers across multiple plat
         
           mongodb_useauth = true
 
-          mongodb_user = grayloguser
+          mongodb_user = <USERNAME>
 
-          mongodb_password = password
+          mongodb_password = <PASSWORD>
     
           mongodb_host = <ipaddress>
        
           #mongodb_replica_set = localhost:27017,localhost:27018,localhost:27019 [default]
         
-          mongodb_database = graylog
+          mongodb_database = <DATABASE_NAME>
           
           mongodb_port = 27017
-
    
 * Start the graylog2-server using given below commands
 
-        $ java -jar graylog2-server.jar -f ./graylog2.conf
+         $ java -jar graylog2-server.jar -f ./graylog2.conf
   
-<h6>Elastic Search </h6>
-
-* Download elasticsearch 0.18.6 version from the link [Click here to download](http://www.elasticsearch.org/download/) and unpack it, 
-
-        $ tar -xvf elasticsearch-0.18.6.tar.gz
-		 
-        $ cd elasticsearch-0.18.6
-		
-* Create a data and log directory
-
-        $ mkdir /var/data/elasticsearch
-		
-        $ mkdir /var/log/elasticsearch
-
-* Configure basic elasticsearch values in the existing config/elasticsearch.yml [elasticsearch configurations details](http://www.elasticsearch.org/guide/reference/setup/configuration.html)
-
-        network.host: <elasticsearchip:ipaddress>
-        
-        path.logs: /var/log/elasticsearch
-        
-        path.data: /var/data/elasticsearch
-        
-        cluster.name: graylog2 
-        
-* Download elasticsearch-servicewrapper into your elasticserach/bin installation directory and unpack it there,using the following commands from the terminal 
-
-        $ wget https://github.com/elasticsearch/elasticsearch-servicewrapper/zipball/master
-  
-        $ mv master elasticsearch-servicewrapper.zip && unzip elasticsearch-servicewrapper.zip
-	
-        $ mv elasticsearch-elasticsearch-servicewrapper-*/* . && rm -rf elasticsearch-elasticsearch-servicewrapper-*
-
-* Update the set.default.ES_HOME path in bin/service/elasticsearch.conf to elastic search installation directory.
-	
-* Start elasticsearch instance using the command
-
-        $ ./elasticsearch 
-
-* Commands usage:
-
-        console      Launch in the current console.
-     
-        start        Start in the background as a daemon process.
-     
-        stop         Stop if running as a daemon or in another console.
-     
-        restart      Stop if running and then start.
-    
-        condrestart  Restart only if already running.
-    
-        status       Query the current status.
-     
-        install      Install to start automatically when system boots.
-     
-        remove       Uninstall.
-     
-        dump         Request a Java thread dump if running.`
-
-
-        $ ./elasticsearch start 
-
-* Elasticsearch instance started successfully the we can check it in the log files either in the same directory or default in **/var/log/elasticsearch/graylog2.log**
- 
 **Note:The configurations in elasticsearch.yml,graylog2.conf should be as common.**
  
 <h6>Graylog2-Web Interface:</h6>
@@ -278,7 +303,7 @@ Syslog supported by a wide variety of devices and receivers across multiple plat
 
         production
       
-        url: http://0.0.0.0:0000/
+        url: http://<elasticsearch-ip>:<port>/
          
         index_name: graylog2
 
@@ -290,17 +315,19 @@ Syslog supported by a wide variety of devices and receivers across multiple plat
       
          port: <mongodb:portno>
        
-         username: db_username
+         username: <USERNAME>
         
-         password: db_password
+         password: <PASSWORD>
         
-         database: db_name
+         database: <DATABASE_NAME>
 
 
 * Install the latest version of ruby on rails which should be 1.9.2,follow the steps for installation by using below steps shall make to install successfully   
 
-* Check for older version RUBY installed via RPM using the following command, 
-    
+* Check for older version RUBY installed via RPM using the following command change to the previous directory, 
+
+         $ cd ../
+
          $ rpm -qa |grep "ruby"
 
 * If older version exists, uninstall it before proceeding using the command
@@ -321,9 +348,9 @@ Syslog supported by a wide variety of devices and receivers across multiple plat
 
 * Export the PATH and GEM_HOME enviornment variables as given below.
 
-        $ export PATH=/usr/local/ruby/bin:$PATH
+        $ export PATH=/usr/local/ruby/bin:/opt/ruby-1.9.2-p0/bin:$PATH
 
-        $ export GEM_HOME=/usr/local/ruby
+        $ export GEM_HOME=/opt/ruby-1.9.2-p0
 
 * Once the install is complete, verify the version of Ruby:
 
@@ -352,18 +379,58 @@ Syslog supported by a wide variety of devices and receivers across multiple plat
 * List the installed gems.
 
         $ gem list
-
-* To make successful installation of all files from gem package , use the command to install missing libraries
-
-        $ bundle install 
-
-* Start the web interface from the installation folder by using the command
+        
+* Change to the web interface from the installation folder by using the command
 
         $ cd <WEB_INTERFACE_INSTALLTION_PATH>
 	
+* Update the  IP Address of  **Apache** configuaration in the file app/views/layouts/application.html.erb
+
+         $ <ip-or-hostname-apache-server>
+                    
+
+* To make successful installation of all files from gem package, use the command to install missing libraries 
+
+        $ gem install bundler 
+        
+        $ bundle install 
+
+* Start the web inrterface using the following command
+
         $ script/rails server -e production -p <PORTNO>
-	
+
  **Note:The configured database name,user name,password, ipaddress,port numbers of MongoDB in graylog2.conf,mongoid.yml should be as common.**
+ 
+**WEBSOCKETPP LIBRARY**
+
+* Dowload the websocketpp library version **zaphoyd-websocketpp-e94825b.zip** from the following link.[Click here to download](https://github.com/zaphoyd/websocketpp)
+
+* Unzip the webscocket library using the following command 
+
+        $ unzip zaphoyd-websocketpp-e94825b.zip
+
+* Change to the installation directory and build static library using the following commands
+
+        $ cd zaphoyd-websocketpp-e94825b/
+       
+        $ make 
+       
+        $ make install
+        
+<h4>ADD ENVIRONMENT VARIABLES IN USER PROFILES</h4>
+---------------------------------------------------
+
+* Open the following file from the home path of user logged in 
+
+        $ vim .bash_profile
+        
+* Add the following environment in the file
+
+        export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
+        export PATH=/usr/local/ruby/bin:/opt/ruby-1.9.2-p0/bin:$PATH
+        export GEM_HOME=/opt/ruby-1.9.2-p0
+        source /opt/HDE/x86_64.linux2.6/release.com
+
     
 <h4>COMPILATION STEPS</h4>
 --------------------------
@@ -372,25 +439,85 @@ Syslog supported by a wide variety of devices and receivers across multiple plat
 
         $ source /../../HDE/x86.linux2.6/release.com
 
+* Download the netspective-fluent from the Netspective github
+
+* Run the following command to clean the build files.
+
+        $ cd <netspective-fluent>/support/build
+
+* Edit the Makefile and replace @@topdir-netspective-fluent@@ to netspective-fluent with parent directories
+
+* Run the following command to clean the build files.
+
+        $ make clean
+
 * Run the makefile
-
-        $ cd support/build
-
+        
         $ make
 
 * After successful completion of compilation, binary files will be created in following directory.
 
         $ cd ../../bin/
 
-* Run the following command to clean the build files.
 
-        $ make clean
+<h4>APACHE CONFIGURATION </h4>
+
+* Append the following configuration in /etc/httpd/conf/httpd.conf 
+ 
+
+        Listen 80
+        <VirtualHost *:80>
+        	DocumentRoot "/opt/netspective-fluent/src/web"
+        	<Directory "/opt/netspective-fluent/src/web">
+        		DirectoryIndex index.html index.htm index.php
+        		Options Indexes FollowSymLinks
+        		AllowOverride None
+        		Order allow,deny
+        		Allow from all
+        		Options +ExecCGI
+        		AddHandler cgi-script cgi pl
+        	</Directory>
+        </VirtualHost>
+
+* Update the configuration in the file /opt/netspective-fluent/src/web/config.php
+
+        <?php
+
+          define("GRAYLOG_URL","http://172.16.1.96:3000"); - Specify the IP Address and Port No. of the Graylog2 server
+
+          define("APACHE_URL","http://172.16.1.96:8080");  - Specify the IP Address and Port No. of the apache server
+
+          define("WEBSOCKET","ws://203.129.254.88:9003");  - Specify the IP Address and Port No. of the Webscoket
+
+        // Following both statement can be as default to refer the files containing directory
+      
+           define("FLUENT_PATH","http://demo.fluent.netspective.com/medi"); 
+
+           define("DOMAIN_URL","http://demo.fluent.netspective.com/");
+
+         ?>
+
+* Start Apache webserer
+
+        $ /etc/init.d/httpd start
+        
+
+<h4>RUNNING WEBSOCKET </h4>
+
+        $ ./webserver <websocket-ip> <websocket-port> <data-generator-ip> <data-generator-port>
+    
+* Accessing Publisher and subscriber broswer
+
+        http://<ip-address>/index.php
+
+
+* Note : If giving hostname instead of ip make sure with name server entry
 
 <h4>STEPS TO RUN THE APPLICATIONS </h4>
 
 **1**. Set OpenSpliceDDS environment using the following command
 
-        $ source /usr/local/HDE/x86.linux2.6/release.com
+        $ source /opt/HDE/x86.linux2.6/release.com
 
 **2**. Start OpenSpliceDDS
 
@@ -398,7 +525,7 @@ Syslog supported by a wide variety of devices and receivers across multiple plat
 
 **3**. Start the data generator at the terminal using the following command
 
-        $ ./data-generator 
+        $ ./data-generator <ipaddress> <port>
      
   * Data Generator will wait until it receives a request from publisher and once the request is received then it generates the data randomly corresponding to the publisher and send it to the publisher. The request can be from any of the three publishers listed below,
      
@@ -428,9 +555,9 @@ Available options  are:
     
 Example:
     
-       $ ./bp-pub --data-gen-ip 127.0.0.1 --data-gen-port 5000 --domain blood --device-id BP_LAB3 --log-info blood.info --log-data blood.data --log4cpp-conf ../src/c++/production/conf/simulation_log_bp.conf
-
-  * Once the publisher binds with the data generator and send a command, it receives data from data-generator and displays the data in the log files.
+        $ ./bp-pub --data-gen-ip 127.0.0.1 --data-gen-port 5000 --domain bp --device-id BP_LAB121 --log-info bp.info --log-data bp.data --log4cpp-conf ../src/c++/production/conf/simulation_log_bp.conf
+  
+* Once the publisher binds with the data generator and send a command, it receives data from data-generator and displays the data in the log files.
 
 **NOTE : The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format**
 
@@ -450,7 +577,7 @@ Available Options are:
 
 EXAMPLE:
        
-       $ ./bp-pub.sh --domain=blood --device-id=BP --spawn=5 --log4cpp-conf ../src/c++/production/conf/simulation_log_bp.conf
+       $ ./bp-pub.sh --domain=bp --device-id=BP --spawn=5 --log4cpp-conf ../src/c++/production/conf/simulation_log_bp.conf
 
 **NOTE :The  arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.**
 
@@ -468,21 +595,21 @@ Available options are:
 
         --log-info arg          Log information category
 
-        --lod-data arg   	      Log data category
+        --lod-data arg          Log data category
 
         --log4cpp-conf arg      Log configuration and format specification file
 
 Example:
 
-       $ ./bp-sub-echo --domain blood --device-id BP_LAB3 --log-info blood.info --log-data blood.echo --log4cpp-conf ../src/c++/production/conf/simulation_log_bp_sub.conf         
-      
+       $ ./bp-sub-echo --domain bp --device-id BP_LAB121 --log-info bp.info --log-data bp.echo --log4cpp-conf ../src/c++/production/conf/simulation_log_bp_sub.conf
+    
   * Once the blood pressure subscriber is started it will retrieve data from the Topic. Subscriber uses ContentFilterTopic to retrieve messages based on the Device ID from a single topic.
   
 **NOTE: The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.**
 
 **3.3**. Start the **blood pressure alarm** on the other terminal by passing the various options suffix to the command. 
 
-       $ ./bp-sub-alarm 
+       $ ./bp-sub-alarm --
 
 Available options are:
   
@@ -512,15 +639,15 @@ Available options are:
 
 Example :
 
-       $ ./bp-sub-alarm --domain blood --device-id BP_LAB3 --log-info blood.info --log-data blood.alarm --log4cpp-conf ../src/c++/production/conf/simulation_log_bp_sub.conf
-
-  * Once the blood pressure alarm is started it will retrieve the data and the displays in log file based on the default assessment or from the specified arguments.
+       $ ./bp-sub-alarm --domain bp --device-id BP_LAB121 --log-info bp.info --log-data bp.alarm --log4cpp-conf ../src/c++/production/conf/simulation_log_bp_sub.conf
+  
+* Once the blood pressure alarm is started it will retrieve the data and the displays in log file based on the default assessment or from the specified arguments.
 
 **NOTE : The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.**
 
 **3.4**. Start the **blood pressure persists** in the other terminal by passing the various options suffix to the command. 
 
-       $ ./bp-sub-persist 
+       $ ./bp-sub-persist --
 
 Available options are:
 
@@ -542,7 +669,7 @@ Available options are:
 
 Example
   
-       $ ./bp-sub-persist --domain blood --device-id BP_LAB3 --log-info blood.info --log-data blood.persist --log4cpp-conf ../src/c++/production/conf/simulation_log_bp_sub.conf
+         $ ./bp-sub-persist --domain bp --device-id BP_LAB121 --log-info bp.info --log-data bp.persist --log4cpp-conf ../src/c++/production/conf/simulation_log_bp_sub.conf --host 172.16.1.91 --database EMR
 
   * Once the blood pressure persistence is started it  will update the data in to the data base and displays the data in the log file.
 
@@ -552,7 +679,7 @@ Example
 
 **4.1. PulseoxMeter publisher** shall be started by passing the various options suffix to the command .
 
-        $ ./pulseox-pub 
+        $ ./pulseox-pub --
 
 Available options are:
 
@@ -574,7 +701,7 @@ Available options are:
 
 Example :
 
-       $ ./pulseox-pub --data-gen-ip 127.0.0.1 --data-gen-port 5000 --domain pulse --device-id PULSE_LAB3 --log-info pulse.info --log-data pulse.data --log4cpp-conf ../src/c++/production/conf/simulation_log_pulse.conf
+        $ ./pulseox-pub --data-gen-ip 172.16.1.91 --data-gen-port 5000 --domain pulse --device-id PULSE_LAB31 --log-info pulse.info --log-data pulse.data --log4cpp-conf ../src/c++/production/conf/simulation_log_pulse.conf
 
   * Once the publisher binds with the data generator and send a command, it receives data from data-generator and displays the data in the log files.
 
@@ -582,7 +709,7 @@ Example :
 
 **4.1.1. Multiple publishers** need to publish the data on the topic use the following command with the options
 
-       $ ./pulseox-pub.sh --
+        $ ./pulseox-pub.sh --
 
 Available Options are:
 
@@ -596,13 +723,13 @@ Available Options are:
 
 EXAMPLE:
        
-       $ ./pulse-oximeter-pub.sh --domain=pulse --device-id=Pulse --spawn=5 --log4cpp-conf ../src/c++/production/conf/simulation_log_bp.conf
+       $ ./pulseox-pub.sh --domain=pulse --device-id=PULSE --spawn=5 --log4cpp-conf ../src/c++/production/conf/simulation_log_pulse.conf
 
 **NOTE :The arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format**
 
 **4.2.** Start the **pulseox meter subscribers** on the other terminal using by passing various options suffix to the command,
 
-       $ ./pulseox-sub-echo -
+       $ ./pulseox-sub-echo --
 
 Available options are:
 
@@ -620,7 +747,7 @@ Available options are:
 
 Example:
 
-      $ ./pulse-sub-echo --domain pulse --device-id Pulse_LAB3 --log-info pulse.info --log-data pulse.echo --log4cpp-conf ../src/c++/production/conf/simulation_log_pulse_sub.conf     
+      $ ./pulseox-sub-echo --domain pulse --device-id PULSE_LAB31 --log-info pulse.info --log-data pulse.echo --log4cpp-conf ../src/c++/production/conf/simulation_log_pulse_sub.conf
 
   * Once the pulse oximeter subscriber is started it will retrieve data from the Topic. Subscriber uses ContentFilterTopic to retrieve messages based on the Device ID from a single topic.
 
@@ -650,13 +777,13 @@ Available options are:
 
 Example:
 
-       $ ./pulseox-sub-alarm --domain pulse --device-id PULSE_LAB3 --log-info pulse.info --log-data pulse.alarm --log4cpp-conf ../src/c++/production/conf/simulation_log_pulse_sub.conf
+        $ ./pulseox-sub-alarm --domain pulse --device-id PULSE_LAB31 --log-info pulse.info --log-data pulse.alarm --log4cpp-conf ../src/c++/production/conf/simulation_log_pulse_sub.conf
 
   * Once the pulse oximeter alarm is started will retrieve the data and the displays in log file based on the default assessment or from the specified arguments.
 
 **NOTE : The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.**
 
-**4.4.** Start the **pulseox meter persist** on the other terminal using by passing various options suffix to the command
+**4.4.** Start the **pulseox meter persists** on the other terminal using by passing various options suffix to the command
 
        $ ./pulseox-sub-persist -- 
 
@@ -680,7 +807,7 @@ Available options are:
 
 Example:
  
-       $ ./pulseox-sub-persist --domain pulse --device-id PULSE_LAB3 --log-info pulse.info --log-data pulse.persist --log4cpp-conf ../src/c++/production/conf/simulation_log_pulse_sub.conf
+       $ ./pulseox-sub-persist --domain pulse --device-id PULSE_LAB31 --log-info pulse.info --log-data pulse.persist --log4cpp-conf ../src/c++/production/conf/simulation_log_pulse_sub.conf --host 172.16.1.91 --database EMR
   
   * Once the pulse oximeter persistence is started it will update the data in to the database and displays the data in the log file.
 
@@ -690,7 +817,7 @@ Example:
 
 **5.1. Temperature monitor** publisher shall be started by passing the various options suffix to the command
 
-       $ ./temperature-pub --
+      $ ./temperature-pub --
 
 Available options are:
   
@@ -712,7 +839,7 @@ Available options are:
 
 Example :
 
-       $ ./temperature-pub --data-gen-ip 127.0.0.1 --data-gen-port 5000 --domain temp --device-id TEMP_LAB3 --log-info temp.info --log-data temp.data --log4cpp-conf ../src/c++/production/conf/simulation_log_temp.conf/simulation_log_temp.conf
+       $ ./temperature-pub --data-gen-ip 172.16.1.91 --data-gen-port 5000 --domain temp --device-id TEMP_LAB33 --log-info temp.info --log-data temp.data --log4cpp-conf ../src/c++/production/conf/simulation_log_temp.conf
 
   * Once the publisher binds with the data generator and send a command, it receives data from data-generator and displays the data in the log files.
 
@@ -734,13 +861,13 @@ Available options are:
 
 EXAMPLE:
        
-        $ ./temperature-pub.sh --domain=blood --device-id=BP --spawn=5 --log4cpp-conf ../src/c++/production/conf/simulation_log_bp.conf
+        $ ./temperature-pub.sh --domain=temp --device-id=TEMP --spawn=5 --log4cpp-conf ../src/c++/production/conf/simulation_log_temp.conf
     
 **NOTE : The arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format**
 
 **5.2.** Start the **temperature-monitor subscribers** on the other terminal by passing the various options suffix to the command ,
 
-        $ ./tempmerature-sub-echo
+        $ ./tempmerature-sub-echo --
 
 Available options are:
 
@@ -758,7 +885,7 @@ Available options are:
 
 Example:
 
-       $ ./temperature-sub-echo --domain temp --device-id Temp_LAB123 --log-info temp.info --log-data temp.echo --log4cpp-conf ../src/c++/production/conf/simulation_log_temp_sub.conf  
+       $ ./temperature-sub-echo --domain temp --device-id TEMP_LAB33 --log-info temp.info --log-data temp.echo --log4cpp-conf ../src/c++/production/conf/simulation_log_temp_sub.conf
 
   * Once the temp subscriber is started it will retrieve data from the Topic. Subscriber uses ContentFilterTopic to retrieve messages based on the Device ID from a single topic.
 
@@ -766,7 +893,7 @@ Example:
 
 **5.3.**  Start the **temperature-monitor alarm** by passing the various options suffix to the command ,
 
-       $ ./tempmerature-sub-alarm
+       $ ./tempmerature-sub-alarm --
 
 Available options are:
 
@@ -790,7 +917,7 @@ Available options are:
 
 Example:
 
-       $ ./temperature-sub-alarm --domain pulse --device-id TEMP_LAB3 --log-info temp.info --log-data temp.alarm --log4cpp-conf ../src/c++/production/conf/simulation_log_temp_sub.conf
+       $ ./temperature-sub-alarm --domain temp --device-id TEMP_LAB33 --log-info temp.info --log-data temp.alarm --log4cpp-conf ../src/c++/production/conf/simulation_log_temp_sub.conf
 
   * Once the pulse oximeter alarm is started it will retrieve the data and the displays in log file based on the default assessment or from the specified arguments.
 
@@ -798,7 +925,7 @@ Example:
 
 **5.4.** Start the **temperature-monitor persists** by passing the various options suffix to the command,
 
-       $ ./temperature-sub-persist 
+       $ ./temperature-sub-persist --
 
 Available options are:
 
@@ -820,9 +947,9 @@ Available options are:
 
 Example:
 
-       $ ./temperature-sub-persist --domain pulse --device-id TEMP_LAB3 --log-info temp.info --log-data temp.persist --log4cpp-conf ../src/c++/production/conf/simulation_log_temp_sub.conf
+      $ ./temperature-sub-persist --domain temp --device-id TEMP_LAB33 --log-info temp.info --log-data temp.persist --log4cpp-conf ../src/c++/production/conf/simulation_log_temp_sub.conf --host 172.16.1.91 --database EMR
 
-  * Once the temperature monitor persistence is started it will update the data in to the database and displays the data in the log file.
+* Once the temperature monitor persists is started it will update the data in to the database and displays the data in the log file.
 
 **NOTE : The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.**
 
@@ -852,7 +979,7 @@ Available options are:
 
 Example :
 
-       $ ./ecg-pub --data-gen-ip 127.0.0.1 --data-gen-port 5000 --domain ECG --device-id ECG_LAB44 --log-info ecg.info --log-data ecg.data --log4cpp-conf ../src/c++/production/conf/simulation_log_ecg.conf 
+        $ ./ecg-pub --data-gen-ip 172.16.1.91 --data-gen-port 5000 --domain ECG --device-id ECG_LAB44 --log-info ecg.info --log-data ecg.data --log4cpp-conf ../src/c++/production/conf/simulation_log_ecg.conf 
 
 * Once the publisher binds with the data generator and send a command, it receives data from data-generator and displays the data in the log files.
 
@@ -860,7 +987,7 @@ Example :
 
 **6.2.** Start the **ecg subscribers** on the other terminal by passing the various options suffix to the command ,
 
-       $ ./ecg-sub-echo
+       $ ./ecg-sub-echo --
 
 Available options are:
 
@@ -878,9 +1005,9 @@ Available options are:
 
 Example:
 
-       $ ./ecg-sub-echo --domain ECG --device-id ECG_LAB44 --log-info ecg.info --log-data ecg.echo --log4cpp-conf ../src/c++/production/conf/simulation_log_ecg_sub.conf
+      $ ./ecg-sub-echo --domain ECG --device-id ECG_LAB44 --log-info ecg.info --log-data ecg.echo --log4cpp-conf ../src/c++/production/conf/simulation_log_ecg_sub.conf
   
-* Once the temp subscriber is started it will retrieve data from the ContentFilterTopic to retrieve messages based on the Device ID from a single topic.
+* Once the ecg subscriber is started it will retrieve data from the ContentFilterTopic to retrieve messages based on the Device ID from a single topic.
 
 **NOTE : The category name arguments passed to the application needs to be configured in the log4cpp configuration file with the appender and layout format.**
 
@@ -923,14 +1050,195 @@ Example:
 
 **8.** The process of all the entities will remain the same as single machine implementation and the extension is it has been distributed with few configurations.
      
+<h6>TROUBLESHOOTING</h6>
 
+<h4>Log4cpp</h4>
 
+* Constructor error in the Basiclayout.cpp
 
+        $ add header file  include<memory> in src/BasicLayout.cpp.
 
+* Parsing error in the  Patternlayout.cpp 
 
+        $ replace the line 373 "component = new FormatModifierComponent(component, std::abs(minWidth), maxWidth, minWidth < 0);" with "component = new FormatModifierComponent(component, std::abs((float)minWidth), maxWidth, minWidth < 0);"
+              
+<h4>Graylog-Webinterface installation</h4>
 
+* `require': no such file to load -- zlib (LoadError)
 
+        $ cd /opt/ruby-1.9.2-p0/ext/zlib
+        
+        $ ruby extconf.rb
+        
+        $ make && make install 
 
+* `require': no such file to load -- openssl (LoadError)
 
+        $ cd /opt/ruby-1.9.2-p0/ext/openssl
+        
+        $ ruby extconf.rb --with--openssl=/usr/bin/openssl --with--openssl-lib=/usr/lib/openssl
+        
+        $ make && make install
 
+<h4>WebServer compilation in Netspective Fluent</h4>
 
+* error: ‘INT32_MIN’ or ‘INT32_MAX’ was not declared in this scope
+
+        $ Replace INT32_MIN with 0 and INT32_MAX with 2147483647 
+        
+<h4>STARTUP SCRIPTS</h4>
+
+* The following script files are should be under /etc/ini.d/ directory,
+
+<h5>MONGODB startup script:</h5>
+
+          #!/bin/bash
+          PROGRAM=/opt/mongodb-linux-x86_64-2.0.2/bin/mongod
+          MONGOPID=`ps -ef | grep 'mongod' | grep -v grep | awk '{print $2}'`
+           case "$1" in
+          
+          start)
+          echo "Starting MongoDB server"
+          /opt/mongodb-linux-x86_64-2.0.2/bin/mongod --fork --quiet --dbpath /data/db  --logpath /var/log/mongodb.log
+          echo "Started MongoDB Server\n"
+          ;;
+          
+          stop)
+          echo "Stopping MongoDB server"
+          if [ ! -z "$MONGOPID" ]; then
+          kill  $MONGOPID 
+          echo "Stopped"
+          fi
+          ;;
+          *)
+          echo "Usage: /etc/init.d/mongodb {start|stop}"
+          exit 1
+          esac
+          exit 0
+          
+* Start the script using the following commands. 
+
+          $ /etc/init.d/<service name>{start/stop}
+Example:
+
+          $ /etc/init.d/mongodb{start/stop}
+ 
+<h5>Elastic Search</h5>
+
+          #!/bin/bash
+          ES_HOME=/opt/elasticsearch-0.18.6
+          ES_MIN_MEM=256m
+          ES_MAX_MEM=2g
+          DAEMON=$ES_HOME/bin/service/elasticsearch
+          NAME=elasticsearch
+          CONFIG_FILE=/opt/elasticsearch-0.18.6/config/elasticsearch.yml
+          case "$1"  in
+         
+          start)
+              $DAEMON start
+              echo "Elasticsearch Started "
+             ;;
+         
+          stop)
+              $DAEMON stop
+              echo "Elasticsearch Stopped "
+              ;;
+               *)
+          N=/etc/init.d/$NAME
+          echo "Usage: $N {start|stop}" >&2
+          exit 1
+          ;;
+          esac
+          exit 0
+* Start the script using the following commands. 
+
+          $ /etc/init.d/<service name>
+Example:
+        
+         $/etc/init.d/elasticsearch start/stop
+ 
+          
+<h5> Graylog Server</h5>
+
+         #!/bin/sh 
+         CMD=$1
+         NOHUP=`which nohup`
+         JAVA_CMD=/usr/bin/java
+         GRAYLOG2_SERVER_HOME=/opt/graylog2-server-0.9.6
+       
+         start() {
+         echo "Starting graylog2-server ..."
+         $NOHUP $JAVA_CMD -jar $GRAYLOG2_SERVER_HOME/graylog2-server.jar -f $GRAYLOG2_SERVER_HOME/graylog2.conf &
+         echo "Started"
+         }
+        
+        stop() {
+        PID=`cat /tmp/graylog2.pid`
+        echo "Stopping graylog2server $PID ..."
+        kill -9 $PID
+        echo "Stopped $PID"
+        }
+        
+        case "$CMD" in
+        start)
+        start
+        ;;
+       
+        stop)
+         stop
+          ;;
+          *)
+        
+        echo "Usage $0 {start|stop}"
+        
+        RETVAL=1
+        
+        esac
+        
+* Start the script using the following commands. 
+
+          $ /etc/init.d/<service name>
+Example:
+          $ /etc/init.d/graylog-server start/stop
+ 
+<h5> Graylog-Web-Interface</h5>       
+
+         #!/bin/bash 
+         
+         NPATH=/opt/netspective-webinterface
+         
+         export PATH=$PATH:/usr/local/ruby/bin/
+         
+         WEBID=`ps -ef | grep 'script/rails' | grep -v grep | awk '{print $2}'`
+         
+         case "$1" in
+           
+           start)
+            echo "Starting Web Interface"
+            cd $NPATH
+            $NPATH/script/rails server -e production & > /dev/null
+           echo "Started Web Interface"
+           ;;
+          
+          stop)
+           echo "Stopping Web Interface"
+           if [ ! -z "$WEBID" ]; then
+           kill -9 $WEBID
+           echo "Stopped $WEBID"
+           fi
+           ;;
+            *)
+          echo "Usage: /etc/init.d/graylog-web {start|stop}"
+          exit 1
+          esac
+          exit 0
+
+* Start the script using the following commands. 
+
+          $ /etc/init.d/<service name>
+Example:
+        
+        $ /etc/init.d/graylog-web start/stop
+ 
+
+          
