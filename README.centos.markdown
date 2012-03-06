@@ -1090,9 +1090,11 @@ Example:
 
 * The following script files are should be under /etc/ini.d/ directory,
 
-<h5>MONGODB startup script:</h5>
+<h5>MONGODB :</h5>
 
           #!/bin/bash
+          #DESCRIPTION:MONGODB STARTUP SCRIPT
+          
           PROGRAM=/opt/mongodb-linux-x86_64-2.0.2/bin/mongod
           MONGOPID=`ps -ef | grep 'mongod' | grep -v grep | awk '{print $2}'`
            case "$1" in
@@ -1126,6 +1128,7 @@ Example:
 <h5>Elastic Search</h5>
 
           #!/bin/bash
+          #DESCRIPTION:ELASTICSEARCH STARTUP SCRIPT
           ES_HOME=/opt/elasticsearch-0.18.6
           ES_MIN_MEM=256m
           ES_MAX_MEM=2g
@@ -1150,17 +1153,18 @@ Example:
           ;;
           esac
           exit 0
-* Start the script using the following commands. 
+* Start the script using the following command, 
 
           $ /etc/init.d/<service name>
 Example:
         
-         $/etc/init.d/elasticsearch {start/stop}
+          $ /etc/init.d/elasticsearch {start/stop}
  
           
-<h5> Graylog Server</h5>
+<h5> Graylog2-Server</h5>
 
          #!/bin/sh 
+         #DESCRIPTION:GRAYLOG SERVER STARTUP SCRIPT
          CMD=$1
          NOHUP=`which nohup`
          JAVA_CMD=/usr/bin/java
@@ -1195,7 +1199,7 @@ Example:
         
         esac
         
-* Start the script using the following commands. 
+* Start the script using the following command, 
 
           $ /etc/init.d/<service name>
 Example:
@@ -1205,15 +1209,13 @@ Example:
 
          #!/bin/bash 
          
+         #DESCRIPTION:GRAYLOG@-WEB-INTERFACE STARTUP SCRIPT
+         
          NPATH=/opt/netspective-webinterface
-         
          export PATH=$PATH:/usr/local/ruby/bin/
-         
          WEBID=`ps -ef | grep 'script/rails' | grep -v grep | awk '{print $2}'`
-         
          case "$1" in
-           
-           start)
+          start)
             echo "Starting Web Interface"
             cd $NPATH
             $NPATH/script/rails server -e production & > /dev/null
@@ -1233,12 +1235,12 @@ Example:
           esac
           exit 0
 
-* Start the script using the following commands. 
+* Start the script using the following command, 
 
           $ /etc/init.d/<service name>
 Example:
         
-        $ /etc/init.d/graylog-web {start/stop}
+          $ /etc/init.d/graylog-web {start/stop}
  
 
           
