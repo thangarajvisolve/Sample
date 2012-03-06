@@ -1155,7 +1155,7 @@ Example:
           $ /etc/init.d/<service name>
 Example:
         
-         $/etc/init.d/elasticsearch start/stop
+         $/etc/init.d/elasticsearch {start/stop}
  
           
 <h5> Graylog Server</h5>
@@ -1199,7 +1199,7 @@ Example:
 
           $ /etc/init.d/<service name>
 Example:
-          $ /etc/init.d/graylog-server start/stop
+          $ /etc/init.d/graylog-server {start/stop}
  
 <h5> Graylog-Web-Interface</h5>       
 
@@ -1238,7 +1238,7 @@ Example:
           $ /etc/init.d/<service name>
 Example:
         
-        $ /etc/init.d/graylog-web start/stop
+        $ /etc/init.d/graylog-web {start/stop}
  
 
           
